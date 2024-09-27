@@ -39,9 +39,6 @@ const nextConfig = {
     },
     'lucide-react': {
       transform: 'lucide-react/{{member}}',
-    },
-    "@clerk/nextjs": {
-      "transform": "@clerk/nextjs/{{member}}"
     }
   }
 };
