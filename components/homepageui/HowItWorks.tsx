@@ -49,10 +49,11 @@ const HowItWorks = () => {
                 <video
                     ref={videoRef}
                     muted={isMuted}
-                    src='https://res.cloudinary.com/dwpdwkw5h/video/upload/v1721197543/Skype_Video_bmewz8.mov'
+                    src='https://res.cloudinary.com/dwpdwkw5h/video/upload/v1727453887/Skype_Video_bmewz8_1_1_1_1_ilac1o.mp4'
                     autoPlay
                     loop
                     className='rounded-lg border-0 w-fit'
+                    playsInline
                 >
                 </video>
                 <div
