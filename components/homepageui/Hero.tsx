@@ -35,7 +35,7 @@ const HeroSection: React.FC<Heroprops> = ({ filteredProducts }) => {
 
         <div className="flex xl:w-[50%] md:w-[45%]">
           <Image
-            src='https://res.cloudinary.com/dwpdwkw5h/image/upload/v1721220247/1_h0eezf.svg'
+            src='https://res.cloudinary.com/dwpdwkw5h/image/upload/v1727448506/hero-img_1_1_1_jwwjst.png'
             alt='hero image'
             width={662}
             priority={true}
