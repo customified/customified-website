@@ -13,12 +13,12 @@ const HeroSection = React.memo(dynamic(() => import('@/components/homepageui/Her
 const HowItWorks = lazy(() => import('@/components/homepageui/HowItWorks'));
 const Categories = lazy(() => import('@/components/homepageui/Categories'));
 
-export const revalidate = 30
+
 const HomePage = async () => {
   const categories = await GetCategories()
   const cat = categories.slice(1)
 
-  const products = await GetProducts({ cache: 'no-store' })
+  const products = await GetProducts()
 
   const filteredProducts = products.filter(product => product.isFeatured)
 
