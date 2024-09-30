@@ -24,13 +24,16 @@ const HowItWorks = () => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
+                    if (!video.src) {
+                        video.src = video.dataset.src || ""; 
+                      }
                     video.play();
                 } else {
                     video.pause();
                 }
             },
             {
-                threshold: 0.2, // Adjust as needed; 0.5 means the video will start playing when 50% of it is in view
+                threshold: 0.2, 
             }
         );
 
@@ -49,7 +52,7 @@ const HowItWorks = () => {
                 <video
                     ref={videoRef}
                     muted={isMuted}
-                    src='https://res.cloudinary.com/dwpdwkw5h/video/upload/v1727453887/Skype_Video_bmewz8_1_1_1_1_ilac1o.mp4'
+                    data-src='https://res.cloudinary.com/dwpdwkw5h/video/upload/v1727453887/Skype_Video_bmewz8_1_1_1_1_ilac1o.mp4'
                     autoPlay
                     loop
                     className='rounded-lg border-0 w-fit'

@@ -43,7 +43,8 @@ const Categories: React.FC<props> = ({ cat, data }) => {
                                     width={300}
                                     height={250}
                                     alt={category.name}
-                                    className='aspect-square'></Image>
+                                    className='aspect-square'
+                                    loading='lazy'></Image>
 
                                 <div className=" w-fit self-center">
                                     <h1 className="text-center font-bold text-sm md:text-base">{category.name}</h1>

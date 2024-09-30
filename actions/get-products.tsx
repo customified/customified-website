@@ -11,7 +11,6 @@ interface Query{
 }
 
 const GetProducts = async( options: { cache?: string } = {}): Promise<Product[]> =>{
-
     // const url = qs.stringifyUrl({
     //     url: URL,
     //     query: {
@@ -26,7 +25,7 @@ const GetProducts = async( options: { cache?: string } = {}): Promise<Product[]>
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Cache-Control': options.cache || 'default',
+            'Cache-Control': options.cache || 'public',
         },
     })
     return res.json()

@@ -13,6 +13,8 @@ const HeroSection = React.memo(dynamic(() => import('@/components/homepageui/Her
 const HowItWorks = lazy(() => import('@/components/homepageui/HowItWorks'));
 const Categories = lazy(() => import('@/components/homepageui/Categories'));
 
+export const revalidate = 3600;
+export const dynamicParams = true
 
 const HomePage = async () => {
   const categories = await GetCategories()
@@ -21,7 +23,6 @@ const HomePage = async () => {
   const products = await GetProducts()
 
   const filteredProducts = products.filter(product => product.isFeatured)
-
   return (
     <Container>
       <div className=" pb-10">

@@ -1,29 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import { TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import GalleryTab from "./GalleryTab";
-import { Image as ImageType, Product } from "@/types";
 import { useSvgStore } from "@/hooks/useSvgStore";
-import { useEffect } from "react";
-import LanyardSvg from "@/components/svg/LanyardSvg";
-import KoozieSvg from "@/components/svg/KoozieSvg";
-import WristbandSvg from "../svg/WristbandSvg";
-import TshirtSvg from "../svg/TshirtSvg";
-import ToteBagSvg from "../svg/ToteBagSvg";
-import MugSvg from "../svg/MugSvg";
-import SweatshirtSvg from "../svg/SweatshirtSvg";
-import BackpackSvg from "../svg/BackpackSvg";
-import PoloShirtSvg from "../svg/PoloShirtSvg";
-import RoundBadgeSvg from "../svg/RoundBadgeSvg";
-import RectBadgeSvg from "../svg/RectBadgeSvg";
-import SquareBadgeSvg from "../svg/SquareBadgeSvg";
-import TriangleBadgeSvg from "../svg/TriangleBadgeSvg";
-import HoodieSvg from "../svg/HoodieSvg";
-import JacketSvg from "../svg/JacketSvg";
-import DrawStringBagSvg from "../svg/DrawStringBagSvg";
-import PaperBagSvg from "../svg/PaperBagSvg";
-import PlasticBagSvg from "../svg/PlasticBagSvg";
+import { lazy, Suspense } from "react";
+import { Product } from "@/types";
+
+//loazy loading svgs
+const LanyardSvg = lazy(() =>  import("@/components/svg/LanyardSvg"));
+const KoozieSvg = lazy(() =>  import("@/components/svg/KoozieSvg"));
+const WristbandSvg = lazy(() =>  import("@/components/svg/WristbandSvg"));
+const TshirtSvg = lazy(() =>  import("@/components/svg/TshirtSvg"));
+const ToteBagSvg = lazy(() =>  import("@/components/svg/ToteBagSvg"));
+const MugSvg = lazy(() =>  import("@/components/svg/MugSvg"));
+const SweatshirtSvg = lazy(() =>  import("@/components/svg/SweatshirtSvg"));
+const BackpackSvg = lazy(() =>  import("@/components/svg/BackpackSvg"));
+const PoloShirtSvg = lazy(() =>  import("@/components/svg/PoloShirtSvg"));
+const RoundBadgeSvg = lazy(() =>  import("@/components/svg/RoundBadgeSvg"));
+const RectBadgeSvg = lazy(() =>  import("@/components/svg/RectBadgeSvg"));
+const SquareBadgeSvg = lazy(() =>  import("@/components/svg/SquareBadgeSvg"));
+const TriangleBadgeSvg = lazy(() =>  import("@/components/svg/TriangleBadgeSvg"));
+const HoodieSvg = lazy(() =>  import("@/components/svg/HoodieSvg"));
+const JacketSvg = lazy(() =>  import("@/components/svg/JacketSvg"));
+const DrawStringBagSvg = lazy(() =>  import("@/components/svg/DrawStringBagSvg"));
+const PaperBagSvg = lazy(() =>  import("@/components/svg/PaperBagSvg"));
+const PlasticBagSvg = lazy(() =>  import("@/components/svg/PlasticBagSvg"));
 
 interface GalleryProps {
   images: string[];
@@ -54,8 +56,6 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
         return <PaperBagSvg />;
       case 'Plastic Bags':
         return <PlasticBagSvg />;
-      // case 'Gift bags':
-      //   return <GiftBagSvg />;
       case 'Drawstring Bags':
         return <DrawStringBagSvg />;
       case 'Backpacks':
@@ -74,10 +74,6 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
         return <MugSvg />;
       case 'Koozies':
         return <KoozieSvg />;
-      // case 'Tumblers':
-      //   return <TumblerSvg />;
-      // case 'Beer mugs':
-      //   return <BeerMugSvg />;
       case 'Round Badges':
         return <RoundBadgeSvg />;
       case 'Square Badges':
@@ -121,7 +117,9 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
         {selectedImage && !(data.additionalCategories?.includes('Accessories')) && !(data.additionalCategories?.includes('Blank Lanyards')) ? (
           <TabPanel >
             <div className="aspect-square sm:rounded-lg  border-2 ">
-              {renderSvg()}
+              <Suspense fallback={<div>Loading SVG...</div>}>
+                {renderSvg()}
+              </Suspense>
             </div>
           </TabPanel>
 
