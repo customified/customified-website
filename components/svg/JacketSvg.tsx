@@ -13,14 +13,12 @@ const JacketSvg = () => {
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
 
-
       <div className="flex flex-col relative" >
         <button className="cursor-pointer px-1 w-fit h-fit z-20" onClick={() => canvast === 'front' ? setCanvasType("back") : setCanvasType("front")}>
           <RotateCcwSquare className="cursor-pointer"/>
         </button>
         {canvast}
       </div>
-
 
       <div className={`${canvast === 'back' ? 'hidden' : 'block'}`}>
         {/* front svg */}

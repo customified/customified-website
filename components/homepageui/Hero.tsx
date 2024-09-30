@@ -16,7 +16,7 @@ const HeroSection: React.FC<Heroprops> = ({ filteredProducts }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowHero(false);
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [showHero]);
@@ -53,15 +53,11 @@ const HeroSection: React.FC<Heroprops> = ({ filteredProducts }) => {
           <h2 className="text-[13px] md:text-base text-gray-600">Discover What{`'`}s Hot and Trending Now</h2>
         </div>
 
-        <div className="flex">
           <div className="grid md:grid-cols-4 grid-cols-2 md:gap-10 gap-4 md:mx-10">
             {filteredProducts.map(product => (
-              <div className="col-span-1" key={product._id}>
                 <ProductCard data={product} key={product._id} />
-              </div>
             ))}
           </div>
-        </div>
       </div>
 
     </>
