@@ -35,9 +35,9 @@ const MainNav: React.FC<MainNavProps> = ({ categories, products, industries }) =
         <ComboSearch categories={categories} products={products} />
       </div>
       <div className="bg-[#393939] text-white self-center flex items-center justify-center">
-        <div className="max-w-[1580px]  md:w-[82%] w-[95%]">
+        <div className="max-w-[1580px]  md:w-[82%] w-full">
 
-          <nav className="items-center space-x-4 w-full flex justify-between">
+          <nav className="items-center md:space-x-4 w-full flex justify-between">
 
             <NavigationMenu className="w-full  hidden md:flex">
               <NavigationMenuList className="w-full flex justify-between">
@@ -60,10 +60,10 @@ const MainNav: React.FC<MainNavProps> = ({ categories, products, industries }) =
               </NavigationMenuList >
             </NavigationMenu>
 
-            <div className="flex items-center">
-            <ProductsIndustry categorys={categories} products={products} industries={industries} />
+            <div className="flex items-center w-full justify-evenly">
+            <ProductsIndustry products={products} industries={industries} />
 
-            <div className="flex font-semibold space-x-8 md:text-sm text-xs">
+            <div className="flex font-semibold space-x-8 md:text-sm text-xs ">
               {/* mobile menu */}
               <button className="flex" onClick={handleNavToggle}>
                 <Menu size={20} />

@@ -44,6 +44,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ category }) => {
                                 fill
                                 priority={true}
                                 className="w-full h-full object-cover rounded-full"
+                                style={{ imageRendering: 'crisp-edges' }}
                             />
                         </div>
                         <p className='text-center font-bold md:text-[11px] text-[9px] text-nowrap'>{cat.label}</p>

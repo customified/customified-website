@@ -125,9 +125,9 @@ const Info: React.FC<Infoprops> = ({
 
 
     return (
-        <div className="py-10">
+        <div className="my-10 border-t-2 pt-2 md:pt-0 md:border-t-0 ">
 
-            <div className="flex flex-col space-y-8 overflow-y-scroll h-[80vh] scrollbar-none pb-10">
+            <div className="flex flex-col space-y-8 overflow-y-scroll h-[80vh] scrollbar-thin  md:scrollbar-none pb-10">
                 <div>
                     <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{`${data.name}`}</h1>
                     <p className="font-medium text-base md:text-lg ">{`Customize Your ${data.category.name} In just a few easy steps`}</p>
