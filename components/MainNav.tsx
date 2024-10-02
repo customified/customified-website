@@ -60,7 +60,7 @@ const MainNav: React.FC<MainNavProps> = ({ categories, products, industries }) =
               </NavigationMenuList >
             </NavigationMenu>
 
-            <div className="flex items-center w-full justify-evenly">
+            <div className="flex items-center w-full justify-evenly  md:justify-end">
             <ProductsIndustry products={products} industries={industries} />
 
             <div className="flex font-semibold space-x-8 md:text-sm text-xs ">

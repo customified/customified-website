@@ -46,10 +46,10 @@ const Categories: React.FC<props> = ({ cat, data }) => {
                                     className='aspect-square'
                                     loading='lazy'></Image>
 
-                                <div className=" w-fit self-center">
+                                <div className=" w-fit self-center flex flex-col gap-0.5 items-center justify-center">
                                     <h1 className="text-center font-bold text-sm md:text-base">{category.name}</h1>
                                     <button
-                                        className="bg-[#097392] font-semibold rounded-none text-[12px] md:text-xs p-2 gap-1 text-white flex my-0.5"
+                                        className="bg-[#097392] font-semibold rounded-none text-[12px] md:text-xs p-2 gap-1 text-white flex "
                                         onClick={() => router.push(`/category/${category._id}`)}>Customize <span className="hidden md:block">Now</span></button>
                                     {/* price */}
                                     <div className="flex items-center justify-evenly gap-1 italic text-[#D55534] md:text-base text-xs">

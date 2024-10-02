@@ -42,7 +42,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ category }) => {
                                 src={cat.imageUrl}
                                 alt={cat.label}
                                 fill
-                                priority={true}
+                                loading='lazy'
                                 className="w-full h-full object-cover rounded-full"
                                 style={{ imageRendering: 'crisp-edges' }}
                             />
