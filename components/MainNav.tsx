@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Category, Industry, Product } from "@/types";
 import { Menu, ShoppingBag } from "lucide-react";
@@ -9,17 +9,28 @@ import ComboSearch from "./ComboSearch";
 import ProductsIndustry from "./ProductsIndustry";
 import Container from "./ui/Container";
 import { NavigationMenuList } from "@radix-ui/react-navigation-menu";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger } from "./ui/shadcn/navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuTrigger,
+} from "./ui/shadcn/navigation-menu";
+import VideoComponent from "./homepageui/VideoComponent";
+import Image from "next/image";
 
 interface MainNavProps {
   categories: Category[];
   products: Product[];
   industries: Industry[];
 }
-export const revalidate = 0
+export const revalidate = 0;
 
-const MainNav: React.FC<MainNavProps> = ({ categories, products, industries }) => {
-
+const MainNav: React.FC<MainNavProps> = ({
+  categories,
+  products,
+  industries,
+}) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const handleNavToggle = () => {
@@ -34,55 +45,81 @@ const MainNav: React.FC<MainNavProps> = ({ categories, products, industries }) =
       <div className="md:hidden md:mb-0 flex self-center justify-center items-center w-full mb-4 ">
         <ComboSearch categories={categories} products={products} />
       </div>
-      <div className="bg-[#393939] text-white self-center flex items-center justify-center">
+      <div className="bg-white self-center flex items-center justify-center border border-gray-200 py-3">
         <div className="max-w-[1580px]  md:w-[82%] w-full">
-
           <nav className="items-center md:space-x-4 w-full flex justify-between">
-
-            <NavigationMenu className="w-full  hidden md:flex">
-              <NavigationMenuList className="w-full flex justify-between">
+            <NavigationMenu className="w-full  hidden md:flex ">
+              <NavigationMenuList className="w-full flex justify-between ">
                 <div className="flex">
                   {categories.slice(1).map((category) => (
                     <NavigationMenuItem key={category._id}>
-                      <NavigationMenuTrigger className=" text-xs  py-2.5">{category.name}</NavigationMenuTrigger>
-                      <NavigationMenuContent className="px-8 md:px-10 py-10 z-50 h-[50vh] overflow-y-scroll scrollbar-thin">
-
-                        {products.filter(product => product.category._id === category._id).map(product => (
-                          <div className="flex flex-col flex-wrap z-50 " key={product._id}>
-                            <NavigationMenuLink className="text-nowrap md:w-[25vw] font-semibold text-sm "><Link href={`/product/${product._id}`}>{product.name}</Link></NavigationMenuLink><br />
+                      <NavigationMenuTrigger className=" text-xs  py-2.5 hover:bg-teal-600 hover:text-white">
+                        {category.name}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className="px-2 md:px-5 py-2 z-50 max-h-[40vh] md:w-[70vw] overflow-y-scroll scrollbar-thin border-t-2 border-teal-600">
+                        <div className="flex justify-between">
+                          <div>
+                            {products
+                              .filter(
+                                (product) =>
+                                  product.category._id === category._id
+                              )
+                              .map((product) => (
+                                <div
+                                  className="flex flex-col z-50 "
+                                  key={product._id}
+                                >
+                                  <NavigationMenuLink className="md:w-[50vw]">
+                                    <Link
+                                      href={`/product/${product._id}`}
+                                      className=" text-sm hover:underline hover:text-teal-600 py-2"
+                                    >
+                                      {product.name}
+                                    </Link>
+                                  </NavigationMenuLink>
+                                </div>
+                              ))}
                           </div>
-                        ))}
-
+                          <Image
+                            src={"/Promo-Banner-Home-Auto.jpg"}
+                            alt="divider"
+                            className="max-w-[250px] max-h-[200px]"
+                            width={200}
+                            height={100}
+                          />
+                        </div>
                       </NavigationMenuContent>
                     </NavigationMenuItem>
                   ))}
                 </div>
-              </NavigationMenuList >
+              </NavigationMenuList>
             </NavigationMenu>
 
             <div className="flex items-center w-full justify-evenly  md:justify-end">
-            <ProductsIndustry products={products} industries={industries} />
+              <ProductsIndustry products={products} industries={industries} />
 
-            <div className="flex font-semibold space-x-8 md:text-sm text-xs ">
-              {/* mobile menu */}
-              <button className="flex" onClick={handleNavToggle}>
-                <Menu size={20} />
-              </button>
-            </div>
+              <div className="flex font-semibold space-x-8 md:text-sm text-xs ">
+                {/* mobile menu */}
+                <button className="flex" onClick={handleNavToggle}>
+                  <Menu size={20} />
+                </button>
+              </div>
             </div>
           </nav>
         </div>
       </div>
-      <Container>
+      <VideoComponent />
+      {/* <Container>
         <div className="mt-5 md:px-12 px-4 ">
           <CategoryList category={categories} />
         </div>
-      </Container>
+      </Container> */}
 
       {/* Mobile Navigation Panel */}
       <div
-        className={`absolute bg-[#181818] inset-0 z-40 w-screen h-screen md:w-[35vw] flex flex-col p-2 transition-transform duration-500 transform ${isNavOpen ? "translate-x-0" : "-translate-x-[120%]"
-          }`}
+        className={`absolute bg-[#181818] inset-0 z-40 w-screen h-screen md:w-[35vw] flex flex-col p-2 transition-transform duration-500 transform ${
+          isNavOpen ? "translate-x-0" : "-translate-x-[120%]"
+        }`}
       >
         <div className="flex w-full h-24 px-5 text-white items-center justify-between md:justify-between">
           <Link href="/" className="text-2xl  font-normal pr-1">
@@ -104,6 +141,6 @@ const MainNav: React.FC<MainNavProps> = ({ categories, products, industries }) =
       </div>
     </>
   );
-}
+};
 
 export default MainNav;

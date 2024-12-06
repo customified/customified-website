@@ -25,7 +25,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ category }) => {
     return (
         <div className='flex flex-col gap-5 transition-all md:px-4'>
             <p className='text-center md:text-base text-sm md:px-0 px-6'>
-                <span className='text-[#097392] font-bold  '>Most popular categories</span> from our collection
+                <span className='text-[#097392] font-bold'>Explore</span> our curated categories
             </p>
             <div className='flex md:gap-4 gap-2 overflow-x-auto scrollbar-none w-full h-full md:justify-center items-center self-center'>
                 {categoryRoutes.map(cat => (
