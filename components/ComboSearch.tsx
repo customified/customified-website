@@ -73,9 +73,9 @@ const ComboSearch: React.FC<SearchProps> = ({ categories, products }) => {
         <div className=' ' onBlur={handleBlur}>
             <div className="relative lex flex-col">
                 <div className="flex border-2 border-[#EBEEF6] md:rounded-full rounded-2xl lg:text-sm text-xs mx-auto relative">
-                    <div className="flex bg-[#EBEEF6] md:rounded-s-full rounded-s-3xl lg:px-4 px-4">
+                    <div className="flex bg-teal-600 text-white md:rounded-s-full rounded-s-3xl lg:px-4 px-4">
                         <DropdownMenu>
-                            <DropdownMenuTrigger className="flex items-center gap-1 outline-none border-0 text-nowrap">
+                            <DropdownMenuTrigger className="flex items-center gap-1 outline-none border-0 text-nowrap ">
                                 {selectedCategory || "All Categories"} <ChevronDown strokeWidth={2} size={16} />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
@@ -83,7 +83,7 @@ const ComboSearch: React.FC<SearchProps> = ({ categories, products }) => {
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem onSelect={() => handleCategorySelect(null)}>All Categories</DropdownMenuItem>
                                 {categories.map((category) => (
-                                    <DropdownMenuItem key={category._id} onSelect={() => handleCategorySelect(category.name)}>
+                                    <DropdownMenuItem key={category._id} className=' hover:bg-teal-600 hover:text-white cursor-pointer' onSelect={() => handleCategorySelect(category.name)}>
                                         {category.name}
                                     </DropdownMenuItem>
                                 ))}
@@ -107,7 +107,7 @@ const ComboSearch: React.FC<SearchProps> = ({ categories, products }) => {
                             filteredProducts.map((product) => (
                                 <div
                                     key={product._id}
-                                    className="py-3 px-5 text-sm md:text-base font-medium cursor-pointer hover:bg-[#f5f5f5] "
+                                    className="py-1 px-5 text-sm md:text-base cursor-pointer hover:underline hover:text-teal-600"
                                     onClick={() => handleProductClick(product._id)}
                                 >
                                     {product.name}

@@ -63,7 +63,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
     return (
         <div className="bg-white pb-10 pt-5">
             <Container>
-                <Billboard data={category.billboardId} />
+                {/* <Billboard data={category.billboardId} /> */}
                 <FilteredProducts
                     groupedProducts={groupedProducts}
                     products={products}
@@ -77,7 +77,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
                         <h2 className="text-base md:text-lg text-gray-600 text-center">Discover What{`'`}s Hot and Trending Now</h2>
                     </div>
                     <div className="flex">
-                        <div className="grid md:grid-cols-4 grid-cols-2 md:gap-10 gap-4 md:mx-10">
+                        <div className="grid md:grid-cols-4 grid-cols-2 md:gap-2 gap-2">
                             {filteredProducts.map(product => (
                                 <div className="col-span-1" key={product._id}>
                                     <ProductCard data={product} key={product._id} />
@@ -86,7 +86,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
                         </div>
                     </div>
                 </div>
-                <CategoryList category={categories}/>
+                {/* <CategoryList category={categories}/> */}
             </Container>
         </div>
     )

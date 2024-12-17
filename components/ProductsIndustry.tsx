@@ -4,7 +4,7 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger
+  NavigationMenuTrigger,
 } from "@/components/ui/shadcn/navigation-menu";
 import { Category, Industry, Product } from "@/types";
 import Link from "next/link";
@@ -14,7 +14,6 @@ interface props {
   industries: Industry[];
 }
 
-
 const ProductsIndustry: React.FC<props> = ({ products, industries }) => {
   return (
     <>
@@ -22,25 +21,36 @@ const ProductsIndustry: React.FC<props> = ({ products, industries }) => {
         <NavigationMenuList className="w-full flex justify-between">
           <div className="flex">
             <NavigationMenuItem>
-              <NavigationMenuTrigger className=" text-xs  py-2.5">All Products</NavigationMenuTrigger>
-              <NavigationMenuContent className="px-8 md:px-5 py-4 z-50 h-[50vh] overflow-y-scroll scrollbar-thin">
-
-                {products.map(product => (
-                  <div className="flex flex-col flex-wrap z-50 gap-1" key={product._id}>
-                    <NavigationMenuLink className="text-nowrap md:w-[25vw] font-semibold text-gray-700 text-sm md:text-sm py-1.5 rounded px-3 hover:bg-gray-100 hover:text-black"><Link href={`/product/${product._id}`}>{product.name}</Link></NavigationMenuLink>
+              <NavigationMenuTrigger className=" text-xs  py-2.5 hover:bg-teal-600 hover:text-white">
+                All Products
+              </NavigationMenuTrigger>
+              <NavigationMenuContent className="px-5 md:px-5 py-4 z-50 h-[50vh] overflow-y-scroll scrollbar-thin border-t-2 border-teal-600">
+                {products.map((product) => (
+                  <div
+                    className="flex flex-col flex-wrap z-50 gap-1"
+                    key={product._id}
+                  >
+                    <NavigationMenuLink className="text-nowrap md:w-[20vw] text-sm md:text-sm py-1.5 rounded px-3 hover:underline hover:text-teal-600 ">
+                      <Link href={`/product/${product._id}`}>
+                        {product.name}
+                      </Link>
+                    </NavigationMenuLink>
                   </div>
                 ))}
-
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className=" text-xs  py-2.5">
+              <NavigationMenuTrigger className=" text-xs  py-2.5 hover:bg-teal-600 hover:text-white">
                 Industries
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="px-8 md:px-5 py-4 z-50 overflow-y-scroll scrollbar-thin">
-                {industries.map(industry => (
+              <NavigationMenuContent className="px-8 md:px-5 py-4 z-50 overflow-y-scroll scrollbar-thin border-t-2 border-teal-600">
+                {industries.map((industry) => (
                   <div className="flex flex-col gap-2 " key={industry._id}>
-                    <NavigationMenuLink className="text-nowrap md:w-[15vw] font-semibold text-gray-700 text-sm md:text-sm py-1.5 rounded px-3 hover:bg-gray-100 hover:text-black"><Link href={`/industry/${industry._id}`}>{industry.name}</Link></NavigationMenuLink>
+                    <NavigationMenuLink className="text-nowrap md:w-[15vw] font-semibold text-gray-700 text-sm md:text-sm py-1.5 rounded px-3 hover:bg-teal-600 hover:text-white">
+                      <Link href={`/industry/${industry._id}`}>
+                        {industry.name}
+                      </Link>
+                    </NavigationMenuLink>
                   </div>
                 ))}
               </NavigationMenuContent>
@@ -49,7 +59,7 @@ const ProductsIndustry: React.FC<props> = ({ products, industries }) => {
         </NavigationMenuList>
       </NavigationMenu>
     </>
-  )
-}
+  );
+};
 
-export default ProductsIndustry
+export default ProductsIndustry;
