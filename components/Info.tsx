@@ -12,7 +12,7 @@ import addToCart from "@/hooks/useAddToCart";
 
 import { useEffect } from "react";
 import { Tab, TabGroup, TabList } from "@headlessui/react";
-import { Heart, HeartIcon, ShoppingCart } from "lucide-react";
+import { HeartIcon, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import InfoSummary from "./ui/InfoSummary";
@@ -65,7 +65,16 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     setProductID(data._id);
     setAdditional(data.additionalCategories ? data.additionalCategories : []);
     addItem(data);
-  }, []);
+  }, [
+    data,
+    setProduct,
+    setCategory,
+    setProductSize,
+    setImage,
+    setProductID,
+    setAdditional,
+    addItem,
+  ]);
 
   const renderCustomization = (customization: Customization) => {
     switch (customization.type) {
@@ -73,59 +82,61 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
         return (
           <div
             key={customization.id}
-            className="flex flex-col w-full pt-5 gap-3"
+            className="flex flex-col w-full pt-5 gap-4"
           >
-            <div className="flex flex-col items-center gap-x-4">
-              <h3 className="font-semibold text-white 2xl:text-lg md:text-base text-sm w-full bg-[#0c3643] rounded px-5 py-1">{`STEP 2: Choose Size`}</h3>
-              <div className="grid md:grid-cols-3 grid-cols-2 w-full xl:gap-5 md:gap-2 gap-2 pt-10 md:px-5 px-1 ">
-                {customization.options?.map((option) => {
-                  return (
-                    <div
-                      key={option.id}
-                      className={`col-span-1 flex w-full border-2 h-20 px-2 py-1 rounded-lg md:gap-5 gap-2 items-center justify-between cursor-pointer hover:border-[#097392] active:border-black 
-                                                 ${
-                                                   option.name === productSize
-                                                     ? "border-[#097392] bg-[#0972921f] shadow-md scale-108 delay-75"
-                                                     : ""
-                                                 }`}
-                      onClick={() => {
-                        setSelectedImage(true);
-                        setProductSize(option.name);
-                      }}
-                    >
-                      {option.mediaUrl && (
-                        <Image
-                          loading="lazy"
-                          width={56}
-                          height={56}
-                          src={option?.mediaUrl ? option.mediaUrl : ""}
-                          alt={option.name}
-                          className="md:h-16 h-14 w-14 self-center "
-                        />
-                      )}
-                      <div className="flex flex-col">
-                        <h1 className="2xl:text-lg md:text-base text-sm font-semibold">
-                          {option.name}
-                        </h1>
-                        {option.value && (
-                          <p className="text-gray-500 md:text-sm text-xs ">
-                            {option.value}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
+            <div className="flex flex-col items-center gap-4">
+              <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
+                STEP 2: Choose Size
+              </h3>
+              <div className="grid md:grid-cols-3 grid-cols-2 gap-4 w-full px-4">
+                {customization.options?.map((option) => (
+                  <button
+                    key={option.id}
+                    className={`flex flex-col items-center justify-center border-2 rounded-lg p-4 transition-transform transform 
+                      ${
+                        option.name === productSize
+                          ? "border-teal-600 bg-teal-100 shadow-lg scale-105"
+                          : "border-gray-300 hover:border-teal-500"
+                      }`}
+                    onClick={() => {
+                      setSelectedImage(true);
+                      setProductSize(option.name);
+                    }}
+                  >
+                    {option.mediaUrl && (
+                      <Image
+                        loading="lazy"
+                        width={56}
+                        height={56}
+                        src={option?.mediaUrl ? option.mediaUrl : ""}
+                        alt={option.name}
+                        className="h-14 w-14 object-contain mb-2"
+                      />
+                    )}
+                    <span className="font-medium text-gray-800">
+                      {option.name}
+                    </span>
+                    {option.value && (
+                      <span className="text-sm text-gray-500">
+                        {option.value}
+                      </span>
+                    )}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
         );
       case CustomizationType.Color:
         return (
-          <div className="flex flex-col items-center gap-x-4">
-            <h3 className="font-semibold text-white 2xl:text-lg md:text-base text-sm w-full bg-[#0c3643] rounded px-5 py-1">{`STEP 3: Choose ${data.category.name} Color`}</h3>
+          <div
+            className="flex flex-col items-center gap-4"
+            key={customization.id}
+          >
+            <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
+              STEP 3: Choose {data.category.name} Color
+            </h3>
             <CustomColor
-              key={customization.id}
               data={customization}
               items={data.customizations}
               deliveryCosts={data.deliveryCosts}
@@ -134,15 +145,25 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
         );
       case CustomizationType.Text:
         return (
-          <div className="flex flex-col items-center md:gap-x-4">
-            <h3 className="font-semibold text-white 2xl:text-lg md:text-base text-sm w-full bg-[#0c3643] rounded px-5 py-1">{`STEP 4: Customize Your Message`}</h3>
-            <CustomFont key={customization.id} data={data} />
+          <div
+            className="flex flex-col items-center gap-4"
+            
+          >
+            <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
+              STEP 4: Customize Your Message
+            </h3>
+            <CustomFont data={data} key={customization.id} />
           </div>
         );
       case CustomizationType.Quantity:
         return (
-          <div className="flex flex-col items-center gap-x-4">
-            <h3 className="font-semibold text-white 2xl:text-lg md:text-base text-sm w-full bg-[#0c3643] rounded px-5 py-1">{`STEP 3: Select Quantity`}</h3>
+          <div
+            className="flex flex-col items-center gap-4"
+            key={customization.id}
+          >
+            <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
+              STEP 5: Select Quantity
+            </h3>
             <Quantity
               customizationOptions={data.customizations}
               deliveryCosts={data.deliveryCosts}
@@ -155,18 +176,23 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
   };
 
   return (
-    <div className="my-10 border-t-2 pt-2 md:pt-0 md:border-t-0 ">
-      <div className="flex flex-col space-y-8 overflow-y-scroll h-[80vh] scrollbar-thin  md:scrollbar-none pb-10">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{`${data.name}`}</h1>
-          <p className="font-medium text-base md:text-lg ">{`Customize Your ${data.category.name} In just a few easy steps`}</p>
+    <div className="my-10 border-t-2 pt-6 md:pt-4">
+       {/* overflow-y-auto h-[80vh] */}
+      <div className="flex flex-col space-y-8  pb-10 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent md:scrollbar-none">
+        <div className="text-center">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+            {data.name}
+          </h1>
+          <p className="mt-2 text-lg md:text-xl text-gray-600">
+            Customize Your {data.category.name} in just a few easy steps
+          </p>
         </div>
-        <div className="flex  flex-col items-center gap-x-4">
-          <h3 className="font-semibold text-white 2xl:text-lg md:text-base text-sm w-full bg-[#0c3643] rounded px-5 py-1">
-            STEP 1: Pick a type that fits your needs.
+        <div className="flex flex-col items-center gap-4">
+          <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
+            STEP 1: Pick a Type That Fits Your Needs
           </h3>
 
-          {/* product list */}
+          {/* Product List */}
           <div className="mx-10 mt-6 w-full max-w-2xl sm:block lg:max-w-none">
             <TabGroup>
               <TabList className="grid md:grid-cols-4 grid-cols-2 gap-6">
@@ -211,47 +237,51 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
 
         {data.customizations.map(renderCustomization)}
 
-        {data.upgrades.length !== 0 && (
-          <div className="flex flex-col items-center gap-x-4">
-            <h3 className="font-semibold text-white 2xl:text-lg md:text-base text-sm w-full bg-[#0c3643] rounded px-5 py-1">
-              STEP 5: Additional Upgrades
+        {data.upgrades.length > 0 && (
+          <div className="flex flex-col items-center gap-4">
+            <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
+              STEP 6: Additional Upgrades
             </h3>
             <Upgrades upgrades={data.upgrades} />
           </div>
         )}
       </div>
 
-      <hr className=" shadow" />
-      <div className="mt-3 flex-col items-center gap-x-3">
-        <div className=" mb-4 flex items-start  gap-5 justify-between">
-          <div className="md:text-2xl text-xl text-gray-900 mt-2">
+      <hr className="border-gray-200" />
+      <div className="mt-6 flex flex-col items-center gap-4">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl px-4">
+          <div className="text-2xl md:text-3xl font-bold text-gray-900">
             <Currency data={totalCost} />
           </div>
 
-          <div className="flex items-start  justify-center md:gap-4 gap-1">
+          <div className="flex items-center space-x-4">
             <Button
-              className="flex items-center gap-x-2 bg-white hover:bg-white selection:bg-white border-none"
+              variant="ghost"
+              className="flex items-center space-x-2 text-gray-600 hover:text-red-600"
               onClick={() => {
                 toggleWishlist(data);
               }}
             >
               {isInWishlist ? (
-                <HeartIcon color="red" fill="red" />
+                <HeartIcon className="w-6 h-6 text-red-500" />
               ) : (
-                <HeartIcon color="gray" fill="gray" />
+                <HeartIcon className="w-6 h-6" />
               )}
+              <span>
+                {isInWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
+              </span>
             </Button>
 
-            <div className="flex md:flex-row flex-col md:gap-4 gap-2  justify-center">
-              <Button
-                className="flex items-center gap-x-2 bg-[#0c3643] text-sm  py-2 px-4 "
-                onClick={addToCart}
-              >
-                Add to Cart
-                <ShoppingCart className="w-[22px] h-[22px]" />
-              </Button>
-              <InfoSummary />
-            </div>
+            <Button
+              variant="default"
+              className="flex items-center space-x-2 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-md shadow-md"
+              onClick={addToCart}
+            >
+              <ShoppingCart className="w-5 h-5" />
+              <span>Add to Cart</span>
+            </Button>
+
+            <InfoSummary />
           </div>
         </div>
       </div>
