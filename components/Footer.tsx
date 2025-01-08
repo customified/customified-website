@@ -1,68 +1,127 @@
-import { Facebook, Instagram, Linkedin, TwitterIcon } from "lucide-react"
+import { ChevronsRight, Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
 import Container from "./ui/Container"
 import Link from "next/link"
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1c1b1b] text-white pb-10">
-      <Container>      
-      <div className="py-10 grid md:grid-cols-12  grid-cols-2 w-full px-10 md:px-0">
-        <div className="md:col-span-3 col-span-2 text-[#097392] flex flex-col gap-3 justify-center md:justify-start mb-10 md:mb-0">
-          <p className="font-bold text-2xl md:text-3xl">Imprintion</p>
-          <div className="flex flex-col">
-          <p className="text-base md:text-xl">Got questions? Call us 24/7! </p>
-          <p className="font-medium text-sm md:text-base text-white">+1 202 555 0104</p>
+    <footer className="bg-gray-900 text-gray-300 py-10">
+      <Container>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-0">
+          {/* Company Info */}
+          <div className="flex flex-col gap-4">
+            <p className="text-teal-400 font-bold text-2xl">Customified Ink</p>
+            <p className="text-sm">
+              Your trusted partner for quality products. We are committed to providing the best services 24/7.
+            </p>
+            <div className="flex space-x-4 mt-2">
+              <Link href="https://facebook.com" target="_blank" aria-label="Facebook">
+                <Facebook className="w-6 h-6 hover:text-teal-400 transition-colors" />
+              </Link>
+              <Link href="https://twitter.com" target="_blank" aria-label="Twitter">
+                <Twitter className="w-6 h-6 hover:text-teal-400 transition-colors" />
+              </Link>
+              <Link href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                <Linkedin className="w-6 h-6 hover:text-teal-400 transition-colors" />
+              </Link>
+              <Link href="https://instagram.com" target="_blank" aria-label="Instagram">
+                <Instagram className="w-6 h-6 hover:text-teal-400 transition-colors" />
+              </Link>
+            </div>
           </div>
-          <div className="flex flex-col ">
-            <p className="text-base md:text-xl">Contact info</p>
-            <p className="text-white text-sm md:text-base">imprintion@example.com</p>
+
+          {/* Trending Links */}
+          <div>
+            <h2 className="text-teal-400 font-semibold mb-4">Trending</h2>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/store" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  Our Store
+                </Link>
+              </li>
+              <li>
+                <Link href="/aboutus" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/partners" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  Our Partners
+                </Link>
+              </li>
+            </ul>
           </div>
-          <div className="flex justify-between w-[50%] mt-1">
-          <Facebook color="white" className="w-[22px] h-[22px] md:w-[28px] md:h-[28px]" fill="white"  />
-          <TwitterIcon color="white" className="w-[22px] h-[22px] md:w-[28px] md:h-[28px]" fill="white" />
-          <Linkedin color="white" className="w-[22px] h-[22px] md:w-[28px] md:h-[28px]" fill="white" />
-          <Instagram color="white" className="w-[22px] h-[22px] md:w-[28px] md:h-[28px]" />
+
+          {/* Information Links */}
+          <div>
+            <h2 className="text-teal-400 font-semibold mb-4">Information</h2>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/aboutus" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contactus" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/shipping-returns" className="hover:text-white transition-colors flex items-center  ">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  Shipping & Returns
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Customer Care Links */}
+          <div>
+            <h2 className="text-teal-400 font-semibold mb-4">Customer Care</h2>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/track-order" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  Track Your Order
+                </Link>
+              </li>
+              <li>
+                <Link href="/recentviews" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  Recently Viewed
+                </Link>
+              </li>
+              <li>
+                <Link href="/wishlist" className="hover:text-white transition-colors flex items-center">
+                <ChevronsRight className="w-4 h-4 mr-2" />
+                  Wishlist
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="col-span-1 hidden md:block"></div>
-
-        <div className="md:col-span-2 col-span1 text-[#097392] flex flex-col gap-3">
-          <h1 className="font-medium text-lg md:text-xl">Trending</h1>
-          <div className="flex flex-col gap-2 md:text-base text-sm">
-            <Link href='/' className="text-white">Home</Link>
-            <Link href='/' className="text-white">Our Store</Link>
-            <Link href='/aboutus' className="text-white">About Us</Link>
-            <Link href='/' className="text-white">Our Partners</Link>
-          </div>
+        <div className="mt-8 border-t border-gray-700 pt-4">
+          <p className="text-center text-sm">
+            &copy; {new Date().getFullYear()} Customified Ink Inc. All rights reserved.
+          </p>
         </div>
-
-        <div className="col-span-1 hidden md:block"></div>
-
-        <div className="md:col-span-2 col-span-1 text-[#097392] flex flex-col gap-3">
-          <h1 className="font-medium text-lg md:text-xl">Information</h1>
-          <div className="flex flex-col gap-2 md:text-base text-sm">
-            <p className="text-white">About Us</p>
-            <p className="text-white">Contact Us</p>
-            <p className="text-white">Shipping & Return</p>
-            <p className="text-white">Privacy Policy</p>
-  
-          </div>
-        </div>
-
-        <div className="col-span-1 hidden md:block"></div>
-
-        <div className="col-span-2 text-[#097392] flex flex-col gap-3 mt-10 md:mt-0">
-          <h1 className="font-medium text-lg md:text-xl">Customer Care</h1>
-          <div className="flex flex-col gap-2 md:text-base text-sm">
-            <p className="text-white">Track Your Order</p>
-            <Link href='/recentviews' className="text-white">Recently Viewed</Link>
-            <Link href='/wishlist' className="text-white">WishList</Link>
-          </div>
-        </div>
-
-      </div>
-      <p className="text-center text-xs "> &copy; 2024 Imprintion Inc. all rights reserved</p>
       </Container>
     </footer>
   )

@@ -16,22 +16,19 @@ const Navbar = async () => {
 
   return (
     <>
-      <div className="">
-        <Container>
-          <div className="relative md:px-4 px-2 lg:px-8 flex md:h-[70px] h-[60px] items-center gap-2 md:justify-center justify-between  ">
-            <Link href="/" className="md:ml-4 flex lg:ml-0 ">
-              <Image
+        <div className=" flex justify-between sticky top-0 bg-gray-50 z-50 border-b border-gray-200">
+          <Link href="/" className="md:ml-4 flex lg:ml-0 ">
+            <Image
                 src="/logo.png"
-                height={85}
-                width={200}
+                height={30}
+                width={80}
                 alt="Imprintion"
-                className=" w-[80%] "
+                className=""
               />
             </Link>
-            <NavbarActions category={categories} products={products} />
-          </div>
-        </Container>
-      </div>
+            
+          <NavbarActions category={categories} products={products} />
+        </div>
       <MainNav
         categories={categories}
         products={products}

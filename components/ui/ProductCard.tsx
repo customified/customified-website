@@ -28,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
       onClick={handleClick}
       className="bg-white group cursor-pointer rounded shadow-md border space-y-4 h-full"
     >
-      <div className="flex flex-col h-full justify-between">
+      <div className="flex flex-col h-full justify-between p-2">
         <div className="aspect-square rounded bg-gray-100 relative">
           <Image
             alt="Image"

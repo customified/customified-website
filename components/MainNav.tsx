@@ -1,7 +1,7 @@
 "use client";
 
 import { Category, Industry, Product } from "@/types";
-import { Menu, ShoppingBag } from "lucide-react";
+import { ChevronRight, ChevronsRight, Menu, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import CategoryList from "./CategoryList";
@@ -56,9 +56,9 @@ const MainNav: React.FC<MainNavProps> = ({
                       <NavigationMenuTrigger className=" text-xs  py-2.5 hover:bg-teal-600 hover:text-white">
                         {category.name}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="px-2 md:px-5 py-2 z-50 max-h-[40vh] md:w-[70vw] overflow-y-scroll scrollbar-thin border-t-2 border-teal-600">
+                      <NavigationMenuContent className="bg-gray-50 px-3 py-2 z-50 max-h-[45vh] md:w-[70vw] border-t-2 border-teal-600">
                         <div className="flex justify-between">
-                          <div>
+                          <div className="grid grid-cols-2">
                             {products
                               .filter(
                                 (product) =>
@@ -66,27 +66,30 @@ const MainNav: React.FC<MainNavProps> = ({
                               )
                               .map((product) => (
                                 <div
-                                  className="flex flex-col z-50 "
+                                  className="flex flex-col z-50 py-2"
                                   key={product._id}
                                 >
-                                  <NavigationMenuLink className="md:w-[50vw]">
+                                  <NavigationMenuLink className="">
                                     <Link
                                       href={`/product/${product._id}`}
-                                      className=" text-sm hover:underline hover:text-teal-600 py-2"
+                                      className=" text-sm hover:underline hover:text-teal-600 flex items-center gap-x-2"
                                     >
+                                      <ChevronsRight className="w-4 h-4" />
                                       {product.name}
                                     </Link>
                                   </NavigationMenuLink>
                                 </div>
                               ))}
                           </div>
-                          <Image
-                            src={"/Promo-Banner-Home-Auto.jpg"}
-                            alt="divider"
-                            className="max-w-[250px] max-h-[200px]"
-                            width={200}
-                            height={100}
-                          />
+                          <div className="">
+                            <Image
+                              src={"/Promo-Banner-Home-Auto.jpg"}
+                              alt="divider"
+                              className="max-h-[45vh]"
+                              width={200}
+                              height={200}
+                            />
+                          </div>
                         </div>
                       </NavigationMenuContent>
                     </NavigationMenuItem>
@@ -108,7 +111,7 @@ const MainNav: React.FC<MainNavProps> = ({
           </nav>
         </div>
       </div>
-      <VideoComponent />
+      {/* <VideoComponent /> */}
       {/* <Container>
         <div className="mt-5 md:px-12 px-4 ">
           <CategoryList category={categories} />

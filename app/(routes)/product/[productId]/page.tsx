@@ -49,7 +49,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
             <Container >
                 <div className="px-4 py-10 sm:px-6 lg:px-8 ">
                     <div className="lg:grid lg:grid-cols-[2fr_3fr] lg:items-start lg:gap-x-12 ">
-                        <div className="gap-5 flex flex-col justify-center ">
+                        <div className="gap-5 flex flex-col justify-center sticky top-10 left-0">
 
                             {/* breadcrumb */}
                             <Breadcrumb>
@@ -69,7 +69,9 @@ const ProductPage: React.FC<ProductPageProps> = async ({
                             </Breadcrumb>
 
                             {/*  */}
+                            
                             <Gallery images={product.images} data={product}/>
+                           
                         </div>
                         <div className="sm:mt-16 px-0 lg:mt-0 ">
                             <Info data={product} items={product.additionalCategories?.includes('Accessories') ? accessoryProducts : filteredProducts} />

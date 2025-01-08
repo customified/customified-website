@@ -6,26 +6,38 @@ import GalleryTab from "./GalleryTab";
 import { useSvgStore } from "@/hooks/useSvgStore";
 import { lazy, Suspense } from "react";
 import { Product } from "@/types";
+import InfoSummary from "../ui/InfoSummary";
+import { Button } from "../ui/shadcn/Button";
+import { HeartIcon, ShoppingCart } from "lucide-react";
+import { toggleWishlist } from "@/hooks/useAddToWishList";
+import { useWishlist } from "@/hooks/useWishList";
+import Currency from "../ui/Currency";
+import { usePriceStore } from "@/hooks/usePriceStore";
+import addToCart from "@/hooks/useAddToCart";
 
 //loazy loading svgs
-const LanyardSvg = lazy(() =>  import("@/components/svg/LanyardSvg"));
-const KoozieSvg = lazy(() =>  import("@/components/svg/KoozieSvg"));
-const WristbandSvg = lazy(() =>  import("@/components/svg/WristbandSvg"));
-const TshirtSvg = lazy(() =>  import("@/components/svg/TshirtSvg"));
-const ToteBagSvg = lazy(() =>  import("@/components/svg/ToteBagSvg"));
-const MugSvg = lazy(() =>  import("@/components/svg/MugSvg"));
-const SweatshirtSvg = lazy(() =>  import("@/components/svg/SweatshirtSvg"));
-const BackpackSvg = lazy(() =>  import("@/components/svg/BackpackSvg"));
-const PoloShirtSvg = lazy(() =>  import("@/components/svg/PoloShirtSvg"));
-const RoundBadgeSvg = lazy(() =>  import("@/components/svg/RoundBadgeSvg"));
-const RectBadgeSvg = lazy(() =>  import("@/components/svg/RectBadgeSvg"));
-const SquareBadgeSvg = lazy(() =>  import("@/components/svg/SquareBadgeSvg"));
-const TriangleBadgeSvg = lazy(() =>  import("@/components/svg/TriangleBadgeSvg"));
-const HoodieSvg = lazy(() =>  import("@/components/svg/HoodieSvg"));
-const JacketSvg = lazy(() =>  import("@/components/svg/JacketSvg"));
-const DrawStringBagSvg = lazy(() =>  import("@/components/svg/DrawStringBagSvg"));
-const PaperBagSvg = lazy(() =>  import("@/components/svg/PaperBagSvg"));
-const PlasticBagSvg = lazy(() =>  import("@/components/svg/PlasticBagSvg"));
+const LanyardSvg = lazy(() => import("@/components/svg/LanyardSvg"));
+const KoozieSvg = lazy(() => import("@/components/svg/KoozieSvg"));
+const WristbandSvg = lazy(() => import("@/components/svg/WristbandSvg"));
+const TshirtSvg = lazy(() => import("@/components/svg/TshirtSvg"));
+const ToteBagSvg = lazy(() => import("@/components/svg/ToteBagSvg"));
+const MugSvg = lazy(() => import("@/components/svg/MugSvg"));
+const SweatshirtSvg = lazy(() => import("@/components/svg/SweatshirtSvg"));
+const BackpackSvg = lazy(() => import("@/components/svg/BackpackSvg"));
+const PoloShirtSvg = lazy(() => import("@/components/svg/PoloShirtSvg"));
+const RoundBadgeSvg = lazy(() => import("@/components/svg/RoundBadgeSvg"));
+const RectBadgeSvg = lazy(() => import("@/components/svg/RectBadgeSvg"));
+const SquareBadgeSvg = lazy(() => import("@/components/svg/SquareBadgeSvg"));
+const TriangleBadgeSvg = lazy(
+  () => import("@/components/svg/TriangleBadgeSvg")
+);
+const HoodieSvg = lazy(() => import("@/components/svg/HoodieSvg"));
+const JacketSvg = lazy(() => import("@/components/svg/JacketSvg"));
+const DrawStringBagSvg = lazy(
+  () => import("@/components/svg/DrawStringBagSvg")
+);
+const PaperBagSvg = lazy(() => import("@/components/svg/PaperBagSvg"));
+const PlasticBagSvg = lazy(() => import("@/components/svg/PlasticBagSvg"));
 
 interface GalleryProps {
   images: string[];
@@ -34,12 +46,15 @@ interface GalleryProps {
 
 const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
   const { selectedImage, setSelectedImage } = useSvgStore();
+  const { totalCost } = usePriceStore();
+  const { wishitems } = useWishlist();
+  const isInWishlist = wishitems.some((item) => item._id === data._id);
 
   const getCategorySvg = (categoryName: string) => {
     switch (categoryName) {
-      case 'Lanyards':
+      case "Lanyards":
         return <LanyardSvg />;
-      case 'Wristbands':
+      case "Wristbands":
         return <WristbandSvg />;
       default:
         return null;
@@ -48,39 +63,39 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
 
   const getSubCategorySvg = (subCategoryName: string) => {
     switch (subCategoryName) {
-      case 'Tote Bags':
+      case "Tote Bags":
         return <ToteBagSvg />;
-      case 'Wristbands':
+      case "Wristbands":
         return <WristbandSvg />;
-      case 'Paper Bags':
+      case "Paper Bags":
         return <PaperBagSvg />;
-      case 'Plastic Bags':
+      case "Plastic Bags":
         return <PlasticBagSvg />;
-      case 'Drawstring Bags':
+      case "Drawstring Bags":
         return <DrawStringBagSvg />;
-      case 'Backpacks':
+      case "Backpacks":
         return <BackpackSvg />;
-      case 'T-shirts':
+      case "T-shirts":
         return <TshirtSvg />;
-      case 'Polos':
+      case "Polos":
         return <PoloShirtSvg />;
-      case 'Sweatshirt':
+      case "Sweatshirt":
         return <SweatshirtSvg />;
-      case 'Hoodies':
+      case "Hoodies":
         return <HoodieSvg />;
-      case 'Jacket':
+      case "Jacket":
         return <JacketSvg />;
-      case 'Mugs':
+      case "Mugs":
         return <MugSvg />;
-      case 'Koozies':
+      case "Koozies":
         return <KoozieSvg />;
-      case 'Round Badges':
+      case "Round Badges":
         return <RoundBadgeSvg />;
-      case 'Square Badges':
+      case "Square Badges":
         return <SquareBadgeSvg />;
-      case 'Rectangle Badges':
+      case "Rectangle Badges":
         return <RectBadgeSvg />;
-      case 'Triangle Badges':
+      case "Triangle Badges":
         return <TriangleBadgeSvg />;
       default:
         return null;
@@ -89,7 +104,8 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
 
   const renderSvg = () => {
     const filteredCategories = data.additionalCategories?.filter(
-      (category) => !["New Arrivals", "On Sale", "Accessories"].includes(category)
+      (category) =>
+        !["New Arrivals", "On Sale", "Accessories"].includes(category)
     );
 
     if (filteredCategories && filteredCategories.length > 0) {
@@ -99,30 +115,66 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
     }
   };
 
-  console.log(selectedImage)
+  console.log(selectedImage);
 
   return (
-    <TabGroup
-      as="div"
-      className="flex flex-col-reverse"
-    >
-      <div className="md:mx-auto mx-2 mt-6 w-full max-w-2xl sm:block lg:max-w-none">
-        <TabList className="grid md:grid-cols-4 grid-cols-3 gap-6">
+    <TabGroup as="div" className="flex flex-col-reverse">
+      <div className="md:mx-auto mx-2 mt-2 w-full max-w-2xl sm:block lg:max-w-none">
+        {/* <TabList className="grid md:grid-cols-4 grid-cols-3 gap-6">
           {images.map((image) => (
             <GalleryTab key={image} image={image} />
           ))}
-        </TabList>
+        </TabList> */}
+        <div className="mt-2 items-center gap-4">
+          <div className=" items-center justify-between w-full max-w-4xl px-4">
+            <div className="flex items-center justify-between">
+              <div className="text-2xl md:text-3xl font-bold text-gray-900">
+                <Currency data={totalCost} />
+              </div>
+              <Button
+                  variant="default"
+                  className="flex items-center space-x-2 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-md shadow-md"
+                  onClick={addToCart}
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                  <span>Add to Cart</span>
+                </Button>
+            </div>
+            <div className="flex items-center justify-between">
+              <Button
+                variant="ghost"
+                className="flex items-center space-x-2 text-gray-600 hover:text-red-600"
+                onClick={() => {
+                  toggleWishlist(data);
+                }}
+              >
+                {isInWishlist ? (
+                  <HeartIcon className="w-6 h-6 text-red-500" />
+                ) : (
+                  <HeartIcon className="w-6 h-6" />
+                )}
+                <span>
+                  {/* {isInWishlist ? "Remove from Wishlist" : "Add to Wishlist"} */}
+                </span>
+              </Button>
+               
+
+                <InfoSummary />
+            </div>
+          </div>
+        </div>
       </div>
       <TabPanels>
-        {selectedImage && !(data.additionalCategories?.includes('Accessories')) && !(data.additionalCategories?.includes('Blank Lanyards')) ? (
-          <TabPanel >
+        {selectedImage &&
+        !data.additionalCategories?.includes("Accessories") &&
+        !data.additionalCategories?.includes("Blank Lanyards") ? (
+          <TabPanel>
             <div className="aspect-square sm:rounded-lg  border-2 ">
               <Suspense fallback={<div>Loading SVG...</div>}>
                 {renderSvg()}
               </Suspense>
             </div>
           </TabPanel>
-
         ) : (
           images.map((image) => (
             <TabPanel key={image}>
@@ -136,10 +188,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
               </div>
             </TabPanel>
           ))
-        )
-        }
-
-
+        )}
       </TabPanels>
     </TabGroup>
   );

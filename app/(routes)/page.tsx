@@ -28,9 +28,13 @@ const HomePage = async () => {
   const filteredProducts = products.filter((product) => product.isFeatured);
   return (
     <div>
+      <VideoComponent />
       <div className=" pb-10">
+
         {/* hero */}
         <HeroSection filteredProducts={filteredProducts} />
+
+        
 
         {/* Categories */}
         <Suspense fallback={<div>Loading Categories...</div>}>
