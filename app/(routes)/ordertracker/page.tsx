@@ -8,8 +8,10 @@ export const revalidate = 0
 const OrdersPage = async () => {
   const user = await currentUser();
   const email = user?.primaryEmailAddress?.emailAddress;
+  //console.log(email)
 
   const orders = await GetOrdersByEmail(email ? email : '', { cache: 'no-store' });
+  //console.log(orders)
 
   return (
     <Container>

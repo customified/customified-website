@@ -10,7 +10,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 const font = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Imprintion",
+  title: "Customified",
   description: "Your Destination for Personalized Products",
 };
 

@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   return (
     <div
       onClick={handleClick}
-      className="bg-white group cursor-pointer rounded shadow-md border space-y-4 h-full"
+      className="bg-white group cursor-pointer rounded shadow-md border space-y-4 h-full hover:bg-teal-50 hover:scale-105 transition-all duration-300"
     >
       <div className="flex flex-col h-full justify-between p-2">
         <div className="aspect-square rounded bg-gray-100 relative">
