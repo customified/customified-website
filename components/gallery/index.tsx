@@ -118,8 +118,8 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
   console.log(selectedImage);
 
   return (
-    <TabGroup as="div" className="flex flex-col-reverse">
-      <div className="md:mx-auto mx-2 mt-2 w-full max-w-2xl sm:block lg:max-w-none">
+    <TabGroup as="div" className="flex flex-col-reverse z-50">
+      <div className="md:mx-auto mx-2 mt-2 w-full max-w-xl sm:block lg:max-w-none">
         {/* <TabList className="grid md:grid-cols-4 grid-cols-3 gap-6">
           {images.map((image) => (
             <GalleryTab key={image} image={image} />
@@ -169,7 +169,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
         !data.additionalCategories?.includes("Accessories") &&
         !data.additionalCategories?.includes("Blank Lanyards") ? (
           <TabPanel>
-            <div className="aspect-square sm:rounded-lg  border-2 ">
+            <div className="aspect-square sm:rounded-lg  border-2 max-h-80 md:max-h-96">
               <Suspense fallback={<div>Loading SVG...</div>}>
                 {renderSvg()}
               </Suspense>
@@ -178,7 +178,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
         ) : (
           images.map((image) => (
             <TabPanel key={image}>
-              <div className="aspect-square relative sm:rounded-lg overflow-hidden border-2">
+              <div className="aspect-square relative sm:rounded-lg overflow-hidden border-2 max-h-60 md:max-h-96">
                 <Image
                   fill
                   src={image}
