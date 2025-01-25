@@ -28,6 +28,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
     params
 }) => {
     const product = await GetProduct(params.productId, { cache: 'no-store' })
+    console.log(product)
 
 // when backend connected .. 
     // const suggestedProducts = await GetProducts({

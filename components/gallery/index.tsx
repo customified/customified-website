@@ -115,7 +115,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
     }
   };
 
-  console.log(selectedImage);
+  
 
   return (
     <TabGroup as="div" className="flex flex-col-reverse z-50">
