@@ -17,12 +17,12 @@ const Navbar = async () => {
   return (
     <>
         <div className=" flex justify-between sticky top-0 bg-gray-50 z-50 border-b border-gray-200">
-          <Link href="/" className="md:ml-4 flex lg:ml-0 ">
+          <Link href="/" className="md:ml-4 flex lg:ml-4 ">
             <Image
-                src="/logo.png"
-                height={30}
-                width={80}
-                alt="Imprintion"
+                src="/logo.jpg"
+                height={100}
+                width={150}
+                alt="customified-logo"
                 className=""
               />
             </Link>
