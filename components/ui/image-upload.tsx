@@ -66,7 +66,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                 (result) => {
                     onUpload(result);
                 }
-            } uploadPreset="kylfnsll">
+            } uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}>
                 {({ open }) => {
                     const onClick = () => {
                         open()
