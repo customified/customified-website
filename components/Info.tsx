@@ -214,10 +214,11 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
                         emptyUpgrades();
                         setQuantity(0);
                         setQuantities({});
-                        router.push(`/product/${item._id}`);
+                        router.push(`/product/${item?.slug}`);
                       }}
                     >
                       <Image
+
                         fill
                         src={item.images?.[0]}
                         alt="image"
@@ -248,7 +249,7 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
       </div>
 
       <hr className="border-gray-200" />
-      <div className="mt-6 flex flex-col items-center gap-4">
+      {/* <div className="mt-6 flex flex-col items-center gap-4">
         <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl px-4">
           <div className="text-2xl md:text-3xl font-bold text-gray-900">
             <Currency data={totalCost} />
@@ -284,7 +285,7 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
             <InfoSummary />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
