@@ -13,7 +13,7 @@ const uploadToCloudinary = async (canvasSnapshot: string, product: string, produ
   if (canvasFile) {
     const formData = new FormData();
     formData.append('file', canvasFile);
-    formData.append('upload_preset', 'kylfnsll');
+    formData.append('upload_preset', `${process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}`);
     formData.append('folder', 'designs');
 
     const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, formData);

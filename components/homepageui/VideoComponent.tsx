@@ -2,15 +2,14 @@
     "use client";
     import Image from "next/image";
     import React, { useEffect, useState } from "react";
-    import hero1 from "../../public/hero.jpg";
-    import hero from "../../public/hero1.jpg";
+    import hero1 from "../../public/hero1.jpg";
     import hero2 from "../../public/hero2.jpg";
     
     const VideoComponent = () => {
       const [activeIndex, setActiveIndex] = useState(0);
       
       const images = [
-        hero,
+        hero1,
         hero2,
       ];
       const imageChangeInterval = 3000; // 3 seconds
