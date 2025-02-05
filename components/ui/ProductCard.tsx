@@ -20,8 +20,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
     emptyUpgrades();
     setQuantity(0);
     setQuantities({});
-    router.push(`/product/${data?._id}`);
+    router.push(`/product/${data?.slug}`);
   };
+  console.log(data)
 
   return (
     <div

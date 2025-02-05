@@ -52,12 +52,14 @@ const ComboSearch: React.FC<SearchProps> = ({ categories, products }) => {
         setFilteredProducts(results);
     };
 
-    const handleProductClick = (id: string) => {
+    const handleProductClick = (slug: string) => {
+        console.log(slug)
         emptyUpgrades()
         setQuantity(0)
         setQuantities({})
-        router.push(`/product/${id}`);
+        router.push(`/product/${slug}`);
     };
+
 
     const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) {
@@ -105,13 +107,14 @@ const ComboSearch: React.FC<SearchProps> = ({ categories, products }) => {
                     <div className="mt-2 absolute top-12 right-0 bg-[#ffffff] shadow-lg border rounded-md z-[9999] max-h-[40vh] overflow-y-scroll scrollbar-thin">
                         {filteredProducts.length > 0 ? (
                             filteredProducts.map((product) => (
-                                <div
+                                    <button
                                     key={product._id}
                                     className="py-1 px-5 text-sm md:text-base cursor-pointer hover:underline hover:text-teal-600"
-                                    onClick={() => handleProductClick(product._id)}
+                                    onClick={() => handleProductClick(product?.slug)}
+
                                 >
                                     {product.name}
-                                </div>
+                                </button>
                             ))
                         ) : (
                             <div className="p-3">No products found.</div>

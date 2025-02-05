@@ -34,6 +34,7 @@ export interface Product {
     deliveryCosts: DeliveryCost;
     createdAt: string;
     storeId: string;
+    slug: string;
 }
 
 export interface AdditionalCategory {
