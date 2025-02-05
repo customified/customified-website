@@ -10,7 +10,6 @@
       const [activeIndex, setActiveIndex] = useState(0);
       
       const images = [
-        hero1,
         hero,
         hero2,
       ];

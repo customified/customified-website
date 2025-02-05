@@ -51,12 +51,12 @@ const MainNav: React.FC<MainNavProps> = ({
             <NavigationMenu className="w-full  hidden md:flex ">
               <NavigationMenuList className="w-full flex justify-between ">
                 <div className="flex">
-                  {categories.slice(1).map((category) => (
+                  {categories.map((category) => (
                     <NavigationMenuItem key={category._id}>
                       <NavigationMenuTrigger className=" text-xs  py-2.5 hover:bg-teal-600 hover:text-white">
                         {category.name}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="bg-gray-50 px-3 py-2 z-50 max-h-[45vh] md:w-[70vw] border-t-2 border-teal-600">
+                      <NavigationMenuContent className="bg-gray-50 px-3 py-2 z-50 max-h-[65vh] md:w-[70vw] border-t-2 border-teal-600">
                         <div className="flex justify-between">
                           <div className="grid grid-cols-2">
                             {products
@@ -71,7 +71,7 @@ const MainNav: React.FC<MainNavProps> = ({
                                 >
                                   <NavigationMenuLink className="">
                                     <Link
-                                      href={`/product/${product._id}`}
+                                      href={`/product/${product.slug}`}
                                       className=" text-sm hover:underline hover:text-teal-600 flex items-center gap-x-2"
                                     >
                                       <ChevronsRight className="w-4 h-4" />
