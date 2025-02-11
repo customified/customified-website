@@ -105,7 +105,7 @@ const HeroSection: React.FC<Heroprops> = ({ filteredProducts }) => {
       <div
         className={`top-products ${
           showHero ? "" : "scroll-up"
-        } flex flex-col gap-8 px-4 sm:px-6 lg:px-8 items-center justify-center md:pb-20 md:pt-16 py-16 w-full`}
+        } flex flex-col gap-5 px-4 sm:px-3 lg:px-4 items-center justify-center md:pb-20 md:pt-16 py-16 w-full`}
       >
         <div className="flex flex-col items-center gap-5 w-full">
           <div className="flex items-center justify-center border-gray-600 border-b-2 relative w-[94%]">
@@ -121,7 +121,7 @@ const HeroSection: React.FC<Heroprops> = ({ filteredProducts }) => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-4 grid-cols-2 md:gap-10 gap-4 md:mx-10">
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 md:gap-5 gap-4 md:mx-3">
           {productsToShow.map((product, index) => {
             if (productsToShow.length === index + 1) {
               // Attach last product ref to trigger loading more

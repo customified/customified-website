@@ -21,7 +21,7 @@ export const dynamicParams = true;
 
 const HomePage = async () => {
   const categories = await GetCategories();
-  const cat = categories.slice(1);
+  const cat = categories;
 
   const products = await GetProducts();
 

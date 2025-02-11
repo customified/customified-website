@@ -9,11 +9,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-0">
           {/* Company Info */}
           <div className="flex flex-col gap-4">
-            <p className="text-teal-400 font-bold text-2xl">Customified Ink</p>
+            <p className="text-teal-400 font-bold text-2xl">Customified </p>
             <p className="text-sm">
               Your trusted partner for quality products. We are committed to providing the best services 24/7.
             </p>
-            <div className="flex space-x-4 mt-2">
+            {/* <div className="flex space-x-4 mt-2">
               <Link href="https://facebook.com" target="_blank" aria-label="Facebook">
                 <Facebook className="w-6 h-6 hover:text-teal-400 transition-colors" />
               </Link>
@@ -26,7 +26,7 @@ const Footer = () => {
               <Link href="https://instagram.com" target="_blank" aria-label="Instagram">
                 <Instagram className="w-6 h-6 hover:text-teal-400 transition-colors" />
               </Link>
-            </div>
+            </div> */}
           </div>
 
           {/* Trending Links */}
@@ -119,7 +119,7 @@ const Footer = () => {
 
         <div className="mt-8 border-t border-gray-700 pt-4">
           <p className="text-center text-sm">
-            &copy; {new Date().getFullYear()} Customified Ink Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} Customified . All rights reserved.
           </p>
         </div>
       </Container>

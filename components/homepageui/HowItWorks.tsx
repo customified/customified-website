@@ -45,10 +45,10 @@ const HowItWorks = () => {
 
   return (
     <div className="flex flex-col items-center justify-center pt-20 pb-10">
-      <h1 className="text-4xl font-medium text-center">
+      <h1 className="text-4xl font-medium text-center my-5">
         <span className="text-[#097392]">How It </span> Works
       </h1>
-      <div className="flex py-14 md:px-10 px-4 rounded-lg border-0 relative md:w-[74%] h-full">
+      {/* <div className="flex py-14 md:px-10 px-4 rounded-lg border-0 relative md:w-[74%] h-full">
         <video
           ref={videoRef}
           muted={isMuted}
@@ -78,7 +78,7 @@ const HowItWorks = () => {
             </ToolTipProvider>
           )}
         </div>
-      </div>
+      </div> */}
       {/* // Start of Selection */}
       <div className="flex flex-col items-center justify-center px-4 relative">
         {/* Simple Background SVG */}
