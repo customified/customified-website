@@ -22,23 +22,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
     setQuantities({});
     router.push(`/product/${data?.slug}`);
   };
-  console.log(data)
+  //console.log(data)
 
   return (
     <div
       onClick={handleClick}
-      className="bg-white group cursor-pointer rounded shadow-md border space-y-4 h-full hover:bg-teal-50 hover:scale-105 transition-all duration-300"
+      className="bg-white group cursor-pointer rounded shadow-md border space-y-4 h-full hover:bg-teal-100 hover:scale-105 transition-all duration-300"
     >
       <div className="flex flex-col h-full justify-between p-2">
-        <div className="aspect-square rounded bg-gray-100 relative">
-          <Image
-            alt="Image"
-            width={312}
-            height={312}
-            src={data?.images[0]}
-            className="aspect-square object-cover rounded"
-            loading="lazy"
-          />
+        <div className="aspect-square rounded relative">
+          <div className="w-full h-full flex items-center justify-center">
+            <Image
+              alt="Image"
+              width={320}
+              height={320}
+              src={data?.images[0]}
+              className="aspect-square object-cover rounded"
+              loading="lazy"
+            />
+          </div>
           <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
             <div className="flex gap-x-6 justify-center">
               <IconButton
@@ -68,7 +70,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
           </div>
           {/* price */}
           <Button
-            className="bg-[#097392] font-semibold rounded-sm text-[12px] md:text-xs px-1.5 py-1 gap-1 w-full"
+            className="bg-teal-600 font-semibold rounded-sm text-[12px] md:text-xs px-1.5 py-1 gap-1 w-full"
             onClick={handleClick}
           >
             Customize <span className="hidden md:block">Now</span>

@@ -25,7 +25,7 @@ const Categories: React.FC<props> = ({ cat, data }) => {
 
   return (
     <div
-      className="flex flex-col gap-10 pt-8 md:py-10 md:mx-20"
+      className="flex flex-col gap-5 pt-8 md:py-10 md:mx-10"
       id="categories"
     >
       <div className="flex flex-col items-center ">
@@ -65,7 +65,7 @@ const Categories: React.FC<props> = ({ cat, data }) => {
                 </div>
                 {/* price */}
                 <Button
-                  className="bg-[#097392] font-semibold rounded-sm text-[12px] md:text-xs px-1.5 py-1 gap-1 w-full"
+                  className="bg-teal-600 font-semibold rounded-sm text-[12px] md:text-xs px-1.5 py-1 gap-1 w-full"
                   onClick={() => router.push(`/category/${category._id}`)}
                 >
                   Explore <span className="hidden md:block">Now</span>
