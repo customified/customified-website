@@ -4,11 +4,11 @@ import Image from "next/image";
 import { TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import GalleryTab from "./GalleryTab";
 import { useSvgStore } from "@/hooks/useSvgStore";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { Product } from "@/types";
 import InfoSummary from "../ui/InfoSummary";
 import { Button } from "../ui/shadcn/Button";
-import { HeartIcon, ShoppingCart } from "lucide-react";
+import { HeartIcon, ShoppingCart, Info } from "lucide-react";
 import { toggleWishlist } from "@/hooks/useAddToWishList";
 import { useWishlist } from "@/hooks/useWishList";
 import Currency from "../ui/Currency";
@@ -45,9 +45,16 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
-  const { selectedImage, setSelectedImage } = useSvgStore();
+  const { selectedImage } = useSvgStore();
   const { totalCost } = usePriceStore();
   const { wishitems } = useWishlist();
+  const [showInfo, setShowInfo] = useState(false);
+  const [currentPrice, setCurrentPrice] = useState(totalCost);
+
+  useEffect(() => {
+    setCurrentPrice(totalCost);
+  }, [totalCost]);
+
   const isInWishlist = wishitems.some((item) => item._id === data._id);
 
   const getCategorySvg = (categoryName: string) => {
@@ -115,32 +122,35 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
     }
   };
 
-  
-
   return (
     <TabGroup as="div" className="flex flex-col-reverse z-50">
       <div className="md:mx-auto mx-2 mt-2 w-full max-w-xl sm:block lg:max-w-none">
-        {/* <TabList className="grid md:grid-cols-4 grid-cols-3 gap-6">
-          {images.map((image) => (
-            <GalleryTab key={image} image={image} />
-          ))}
-        </TabList> */}
-        <div className="mt-2 items-center gap-4">
-          <div className=" items-center justify-between w-full max-w-4xl px-4">
+        <div className="mt-2 bg-white rounded-lg shadow-sm p-4 border">
+          <div className="flex flex-col space-y-4">
             <div className="flex items-center justify-between">
-              <div className="text-2xl md:text-3xl font-bold text-gray-900">
-                <Currency data={totalCost} />
+              <div className="flex items-center gap-2">
+                <div className="text-2xl md:text-3xl font-bold text-gray-900">
+                  <Currency data={currentPrice} />
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="rounded-full p-2"
+                  onClick={() => setShowInfo(!showInfo)}
+                >
+                  <Info className={`w-5 h-5 ${showInfo ? 'text-teal-600' : 'text-gray-500'}`} />
+                </Button>
               </div>
               <Button
-                  variant="default"
-                  className="flex items-center space-x-2 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-md shadow-md"
-                  onClick={addToCart}
-                >
-                  <ShoppingCart className="w-5 h-5" />
-                  <span>Add to Cart</span>
-                </Button>
+                variant="default"
+                className="flex items-center space-x-2 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-md shadow-md"
+                onClick={addToCart}
+              >
+                <ShoppingCart className="w-5 h-5" />
+                <span>Add to Cart</span>
+              </Button>
             </div>
-            <div className="flex items-center justify-between">
+            <div className={`flex items-center justify-between border-t pt-4 ${showInfo ? '' : 'hidden'}`}>
               <Button
                 variant="ghost"
                 className="flex items-center space-x-2 text-gray-600 hover:text-red-600"
@@ -153,13 +163,8 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
                 ) : (
                   <HeartIcon className="w-6 h-6" />
                 )}
-                <span>
-                  {/* {isInWishlist ? "Remove from Wishlist" : "Add to Wishlist"} */}
-                </span>
               </Button>
-               
-
-                <InfoSummary />
+              <InfoSummary />
             </div>
           </div>
         </div>
