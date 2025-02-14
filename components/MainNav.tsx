@@ -54,7 +54,9 @@ const MainNav: React.FC<MainNavProps> = ({
                   {categories.map((category) => (
                     <NavigationMenuItem key={category._id}>
                       <NavigationMenuTrigger className=" text-xs  py-2.5 hover:bg-teal-600 hover:text-white">
-                        {category.name}
+                        <Link href={`/category/${category._id}`}>
+                          {category.name}
+                        </Link>
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="bg-gray-50 px-3 py-2 z-50 max-h-[65vh] md:w-[70vw] border-t-2 border-teal-600">
                         <div className="flex justify-between">
