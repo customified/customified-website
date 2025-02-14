@@ -14,6 +14,7 @@ import { useWishlist } from "@/hooks/useWishList";
 import Currency from "../ui/Currency";
 import { usePriceStore } from "@/hooks/usePriceStore";
 import addToCart from "@/hooks/useAddToCart";
+import { useRouter } from 'next/navigation';
 
 //loazy loading svgs
 const LanyardSvg = lazy(() => import("@/components/svg/LanyardSvg"));
@@ -45,6 +46,7 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
+  const router = useRouter();
   const { selectedImage } = useSvgStore();
   const { totalCost } = usePriceStore();
   const { wishitems } = useWishlist();
@@ -144,7 +146,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
               <Button
                 variant="default"
                 className="flex items-center space-x-2 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-md shadow-md"
-                onClick={addToCart}
+                onClick={() => addToCart(router)}
               >
                 <ShoppingCart className="w-5 h-5" />
                 <span>Add to Cart</span>
