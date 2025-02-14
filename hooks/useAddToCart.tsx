@@ -6,6 +6,7 @@ import { usePriceStore } from "./usePriceStore";
 import { dataURLtoFile, isCanvasBlank } from "@/lib/utils";
 import { useCanvasStore } from "./useCanvasStore";
 import axios from "axios";
+import { useRouter } from 'next/navigation';
 
 const uploadToCloudinary = async (canvasSnapshot: string, product: string, productSize: string, index: number = 0) => {
   const canvasFile = dataURLtoFile(canvasSnapshot, `${product}-${productSize}-${index}-${Date.now()}.png`);
@@ -57,7 +58,7 @@ const processCanvas = async (
   };
 };
 
-const addToCart = async () => {
+const addToCart = async (router: ReturnType<typeof useRouter>) => {
   const { product, category, quantity, productSize, quantities, upgrades, image, productID, frontDesignUrl, backDesignUrl } = useProductStore.getState();
   const { unitCost, totalCost, totalCostWithoutDelivery, totalDeliveryCost } = usePriceStore.getState();
   const { color, font, text, textColor } = useSvgStore.getState();
@@ -107,7 +108,13 @@ const addToCart = async () => {
     }
   };
 
-  useCart.getState().addItem(cartItem);
+  try {
+    useCart.getState().addItem(cartItem);
+    router.push('/cart');
+  } catch (error) {
+    console.error('Error adding item to cart:', error);
+    alert('Failed to add item to cart');
+  }
 };
 
 export default addToCart;
