@@ -245,7 +245,7 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
         {data.upgrades.length > 0 && (
           <div className="flex flex-col items-center gap-4">
             <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
-              STEP 6: Additional Upgrades
+              STEP 5: Additional Upgrades
             </h3>
             <Upgrades upgrades={data.upgrades} />
           </div>
