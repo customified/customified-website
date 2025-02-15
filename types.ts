@@ -35,6 +35,7 @@ export interface Product {
     createdAt: string;
     storeId: string;
     slug: string;
+    orderNote: string;
 }
 
 export interface AdditionalCategory {
@@ -100,6 +101,7 @@ export interface Cart {
     totalCostWithoutDelivery: number;
     totalDeliveryCost: number
     totalCost: number;
+    orderNote: string | null;
     design?: {
         front: {
             userdesign : string | null;

@@ -10,7 +10,7 @@ import { useProductStore } from "@/hooks/useProductStore";
 import { useSvgStore } from "@/hooks/useSvgStore";
 import addToCart from "@/hooks/useAddToCart";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Tab, TabGroup, TabList } from "@headlessui/react";
 import { HeartIcon, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -32,6 +32,7 @@ const CustomFont = dynamic(() => import("@/components/ui/CustomFont"), {
 });
 
 const Info: React.FC<Infoprops> = ({ data, items }) => {
+  const [noteText, setNoteText] = useState("");
   const { setSelectedImage } = useSvgStore();
   const router = useRouter();
   const {
@@ -46,6 +47,7 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     setQuantities,
     setAdditional,
     setQuantity,
+    setOrderNote,
   } = useProductStore();
   const { totalCost } = usePriceStore();
   const { addItem } = useRecentlyViewed();
@@ -65,6 +67,7 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     setProductID(data._id);
     setAdditional(data.additionalCategories ? data.additionalCategories : []);
     addItem(data);
+    setOrderNote(data.orderNote);
   }, [
     data,
     setProduct,
@@ -74,6 +77,7 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     setProductID,
     setAdditional,
     addItem,
+    setOrderNote,
   ]);
 
   const renderCustomization = (customization: Customization) => {
@@ -246,6 +250,23 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
             <Upgrades upgrades={data.upgrades} />
           </div>
         )}
+
+        <div className="flex flex-col items-center gap-4">
+          <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
+            Order Note
+          </h3>
+          <div className="w-full px-4">
+            <textarea
+              value={noteText}
+              onChange={(e) => {
+                setNoteText(e.target.value);
+                setOrderNote(e.target.value);
+              }}
+              placeholder="Add any special instructions or notes for your order..."
+              className="w-full p-3 border rounded-md min-h-[100px] focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+          </div>
+        </div>
       </div>
 
       <hr className="border-gray-200" />

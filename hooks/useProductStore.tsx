@@ -30,6 +30,8 @@ interface productState {
     setFrontDesignUrl: (url: string | null) => void;
     backDesignUrl: string | null;
     setBackDesignUrl: (url: string | null) => void;
+    orderNote: string | null;
+    setOrderNote: (value: string) => void;
 }
 
 export const useProductStore = create<productState>((set) => ({
@@ -65,4 +67,6 @@ export const useProductStore = create<productState>((set) => ({
     setFrontDesignUrl: (url) => set({ frontDesignUrl: url }),
     backDesignUrl: null,
     setBackDesignUrl: (url) => set({ backDesignUrl: url }),
+    orderNote: null,
+    setOrderNote: (value) => set({ orderNote: value }),
 }));
