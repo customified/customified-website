@@ -1,13 +1,22 @@
 import { useSvgStore } from "@/hooks/useSvgStore";
 import React from "react";
 import CanvasComponent from "../ui/Canvas";
+import {RotateCcwSquare} from "lucide-react";
+import {useCanvasStore} from "@/hooks/useCanvasStore";
 
 function WristbandSvg() {
 
     const { color } = useSvgStore()
+    const { canvast, setCanvasType } = useCanvasStore()
 
     return (
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+            <div className="flex flex-col  " >
+                <div className="cursor-pointer px-1 w-full h-full" onClick={() => canvast === 'front' ? setCanvasType("back") : setCanvasType("front")}>
+                    <RotateCcwSquare />
+                </div>
+                {canvast}
+            </div>
 
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +90,12 @@ function WristbandSvg() {
             </svg>
 
             <div style={{ position: 'absolute', top: 150, left: 0, right: 0, bottom: 0 }} className="z-20 flex items-center justify-center">
+                <div className={`${canvast === 'back' ? 'hidden' : 'block'}`}>
                     <CanvasComponent canvasType='front' height='65' width='310' />
+                </div>
+                <div className={`${canvast === 'front' ? 'hidden' : 'block'}`}>
+                    <CanvasComponent canvasType='back' height='65' width='310' />
+                </div>
             </div>
 
         </div>

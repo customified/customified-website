@@ -41,9 +41,21 @@ const DesignFromScratch = () => {
   return (
     <Tabs defaultValue={value} className="w-full py-2 font-medium bg-white">
       <TabsList>
-        <TabsTrigger value="front" onClick={() => setCanvasType('front')} className="text-md">Front Design</TabsTrigger>
-        {category !== "Wristbands" && category!== 'Badges'  && !additional.includes('Backpacks') ?
-          <TabsTrigger value="back" onClick={() => setCanvasType('back')} className="text-md">Back Design</TabsTrigger> : ('')
+        <TabsTrigger 
+          value="front" 
+          onClick={() => setCanvasType('front')} 
+          className="text-md"
+        >
+          {category === "Wristbands" ? "Front Message" : "Front Design"}
+        </TabsTrigger>
+        {category !== "Badges" && !additional.includes('Backpacks') ?
+          <TabsTrigger 
+            value="back" 
+            onClick={() => setCanvasType('back')} 
+            className="text-md"
+          >
+            {category === "Wristbands" ? "Back Message" : "Back Design"}
+          </TabsTrigger> : ('')
         }
       </TabsList>
 

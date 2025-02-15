@@ -107,12 +107,15 @@ const CustomFont: React.FC<CustomFontProps> = ({ data }) => {
       ) : ('')}
 
       <TabsContent value="Upload Design" className='md:px-6 px-2'>
-
         <Tabs defaultValue="front" className="w-[400px]">
           <TabsList>
-            <TabsTrigger value="front">Front Design</TabsTrigger>
-           {data.category.name !== "Wristbands" && data.category.name!== 'Badges'  && !data.additionalCategories?.includes('Backpacks') ?
-              <TabsTrigger value="back">Back Design</TabsTrigger> 
+            <TabsTrigger value="front">
+              {data.category.name === "Wristbands" ? "Front Message" : "Front Design"}
+            </TabsTrigger>
+            {data.category.name !== "Badges" && !data.additionalCategories?.includes('Backpacks') ?
+              <TabsTrigger value="back">
+                {data.category.name === "Wristbands" ? "Back Message" : "Back Design"}
+              </TabsTrigger> 
               : ('')  
             }
           </TabsList>
