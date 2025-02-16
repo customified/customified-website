@@ -31,9 +31,9 @@ const FilteredProducts: React.FC<FilteredProductsProps> = ({
     const accessories = products.filter(item => item.additionalCategories?.includes('Accessories'))
 
     return (
-        <div className=" sm:px-6 lg:px-8 pb-16">
+        <div className=" sm:px-3 lg:px-5 pb-16">
             {hasSubCategories && (
-                <div className="flex flex-wrap md:gap-4 gap-2 md:mx-11 mt-1 px-4">
+                <div className="flex flex-wrap md:gap-4 gap-2 md:mx-5 mt-1 px-4">
                     <button
                         onClick={() => handleFilterClick('All Products')}
                         className={`md:px-3 md:py-1 px-2 py-1 rounded-md border-2 border-[#097392] font-medium text-xs ${selectedSubCategory === 'All Products'

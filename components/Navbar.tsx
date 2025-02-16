@@ -20,8 +20,8 @@ const Navbar = async () => {
           <Link href="/" className="md:ml-4 flex lg:ml-4 ">
             <Image
                 src="/logo.jpg"
-                height={100}
-                width={150}
+                height={200}
+                width={220}
                 alt="customified-logo"
                 className=""
               />

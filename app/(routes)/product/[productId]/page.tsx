@@ -50,7 +50,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
             <Container >
                 <div className="px-4 py-10 sm:px-6 lg:px-8 ">
                     <div className="lg:grid lg:grid-cols-[2fr_3fr] lg:items-start lg:gap-x-12 ">
-                        <div className="gap-5 flex flex-col justify-center sticky top-10 left-0 bg-white">
+                        <div className="gap-5 flex flex-col justify-center md:sticky md:top-10 md:left-0 bg-white">
 
                             {/* breadcrumb */}
                             <Breadcrumb>

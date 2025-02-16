@@ -9,7 +9,7 @@ import { Button } from "./shadcn/Button";
 import { useProductStore } from '@/hooks/useProductStore';
 
 const DesignFromScratch = () => {
-  const { addText, addImage, updateSelectedObject, canvast, setCanvasType } = useCanvasStore();
+  const { addText, addImage, updateSelectedObject, canvast, setCanvasType, frontCanvas, backCanvas } = useCanvasStore();
   const [textValue, setTextValue] = useState("");
   const { category, additional } = useProductStore()
   const [textColor, setTextColor] = useState("#000000");
@@ -37,6 +37,17 @@ const DesignFromScratch = () => {
     updateSelectedObject(canvast, { fill: e.target.value });
   };
 
+  const handleDeleteSelectedObject = () => {
+    const canvas = canvast === 'front' ? frontCanvas : backCanvas;
+    if (canvas) {
+      const activeObject = canvas.getActiveObject();
+      if (activeObject) {
+        canvas.remove(activeObject);
+        canvas.requestRenderAll();
+      }
+    }
+    
+  };
 
   return (
     <Tabs defaultValue={value} className="w-full py-2 font-medium bg-white">
@@ -95,23 +106,32 @@ const DesignFromScratch = () => {
         <hr className='mt-2'></hr>
         <div className="px-2 py-3 gap-5 flex flex-col">
           <h5 className='font-semibold'>Upload Image to Design</h5>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) {
-                const reader = new FileReader();
-                reader.onload = () => {
-                  if (reader.result) {
-                    handleAddImage(reader.result as string);
-                  }
-                };
-                reader.readAsDataURL(file);
-              }
-            }}
-            className='text-sm'
-          />
+          <div className="flex flex-col gap-2">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = () => {
+                    if (reader.result) {
+                      handleAddImage(reader.result as string);
+                    }
+                  };
+                  reader.readAsDataURL(file);
+                }
+              }}
+              className='text-sm'
+            />
+            <Button 
+              onClick={handleDeleteSelectedObject}
+              variant="destructive" 
+              className='mt-2 w-fit'
+            >
+              Delete Selected Object
+            </Button>
+          </div>
         </div>
       </TabsContent>
 
@@ -152,23 +172,32 @@ const DesignFromScratch = () => {
 
         <div className="px-4 md:py-3 py-4 flex flex-col">
           <h5 className='font-semibold'>Upload Image to Design</h5>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) {
-                const reader = new FileReader();
-                reader.onload = () => {
-                  if (reader.result) {
-                    handleAddImage(reader.result as string);
-                  }
-                };
-                reader.readAsDataURL(file);
-              }
-            }}
-            className='text-sm'
-          />
+          <div className="flex flex-col gap-2">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = () => {
+                    if (reader.result) {
+                      handleAddImage(reader.result as string);
+                    }
+                  };
+                  reader.readAsDataURL(file);
+                }
+              }}
+              className='text-sm'
+            />
+            <Button 
+              onClick={handleDeleteSelectedObject}
+              variant="destructive" 
+              className='mt-2 w-fit'
+            >
+              Delete Selected Object
+            </Button>
+          </div>
         </div>
       </TabsContent>
     </Tabs>

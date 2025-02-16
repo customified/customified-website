@@ -125,7 +125,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
   };
 
   return (
-    <TabGroup as="div" className="flex flex-col-reverse z-50">
+    <TabGroup as="div" className="flex flex-col-reverse">
       <div className="md:mx-auto mx-2 mt-2 w-full max-w-xl sm:block lg:max-w-none">
         <div className="mt-2 bg-white rounded-lg shadow-sm p-4 border">
           <div className="flex flex-col space-y-4">

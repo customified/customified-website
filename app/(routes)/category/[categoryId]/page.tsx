@@ -26,7 +26,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
     searchParams
 }) => {
     const categories = await GetCategories()
-    const cat = categories.slice(1)
+    const cat = categories
 
     const category = await getCategory(params.categoryId, { cache: "no-store" });
     const prod = await GetProducts();
@@ -71,13 +71,13 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
                 />
                 <Categories cat={cat} data={prod} />
                 {/* Top Products list */}
-                <div className={`flex flex-col gap-8 px-4 sm:px-6 lg:px-8 items-center justify-center md:pb-20 md:pt-4 py-12`}>
+                <div className={`flex flex-col gap-8 px-4 sm:px-6 lg:px-8 items-center justify-center pb-10 pt-4`}>
                     <div className='flex flex-col items-center'>
                         <h1 className="text-2xl md:text-3xl font-semibold text-black" id='products'><span className="text-[#097392]">Top </span>Products</h1>
                         <h2 className="text-base md:text-lg text-gray-600 text-center">Discover What{`'`}s Hot and Trending Now</h2>
                     </div>
                     <div className="flex">
-                        <div className="grid md:grid-cols-4 grid-cols-2 md:gap-2 gap-2">
+                        <div className="grid md:grid-cols-4 grid-cols-2 md:gap-5 gap-5">
                             {filteredProducts.map(product => (
                                 <div className="col-span-1" key={product._id}>
                                     <ProductCard data={product} key={product._id} />
