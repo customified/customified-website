@@ -39,6 +39,7 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     date.setDate(date.getDate() + 7);
     return date;
   });
+  const { deliveryCostPerUnit } = usePriceStore();
   const { setSelectedImage } = useSvgStore();
   const router = useRouter();
   const {
@@ -268,15 +269,14 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
                 date.setDate(date.getDate() + 7 + index);
                 const isSelected = deliveryDate && date.toDateString() === deliveryDate.toDateString();
                 
-                let deliveryCostPerUnit;
+                let dt;
                 if (index === 5) {
-                  deliveryCostPerUnit = 0; // Free delivery
+                  dt = 0; // Free delivery
                 } else {
-                  const basePrice = data.deliveryCosts.priceTiers[0]?.price || '0';
-                  deliveryCostPerUnit = parseFloat(basePrice) - (parseFloat(basePrice) * 0.1 * index);
+                  dt = deliveryCostPerUnit - deliveryCostPerUnit * index * 0.1;
                 }
                 
-                const priceDisplay = index === 5 ? 'FREE' : `+$${deliveryCostPerUnit.toFixed(2)}/pc`;
+                const priceDisplay = index === 5 ? 'FREE' : `+$${dt.toFixed(2)}/pc`;
                 
                 return (
                   <button
@@ -284,7 +284,7 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
                     onClick={() => {
                       setDeliveryDate(date);
                       const { setDeliveryCostPerUnit } = usePriceStore.getState();
-                      setDeliveryCostPerUnit(deliveryCostPerUnit);
+                      setDeliveryCostPerUnit(dt);
                     }}
                     className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 min-w-[200px] transition-all ${isSelected ? 'border-[#097392] bg-[#0972921f] scale-[1.02]' : 'border-gray-200 hover:border-[#097392]'}`}
                   >
