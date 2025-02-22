@@ -102,6 +102,7 @@ export interface Cart {
     totalDeliveryCost: number
     totalCost: number;
     orderNote: string | null;
+    deliveryDate: Date | null;
     design?: {
         front: {
             userdesign : string | null;

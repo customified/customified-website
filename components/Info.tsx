@@ -34,23 +34,8 @@ const CustomFont = dynamic(() => import("@/components/ui/CustomFont"), {
 
 const Info: React.FC<Infoprops> = ({ data, items }) => {
   const [noteText, setNoteText] = useState("");
-  const [deliveryDate, setDeliveryDate] = useState<Date | null>(() => {
-    const date = new Date();
-    date.setDate(date.getDate() + 7);
-    return date;
-  });
 
   const { basePriceForDatePicker } = usePriceStore();
-
-  useEffect(() => {
-    if (basePriceForDatePicker > 0) {
-      const date = new Date();
-      date.setDate(date.getDate() + 7);
-      setDeliveryDate(date);
-      const { setDeliveryCostPerUnit } = usePriceStore.getState();
-      setDeliveryCostPerUnit(basePriceForDatePicker);
-    }
-  }, [basePriceForDatePicker]);
 
   const { setSelectedImage } = useSvgStore();
   const router = useRouter();
@@ -67,11 +52,23 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     setAdditional,
     setQuantity,
     setOrderNote,
+    deliveryDate,
+    setDeliveryDate,
   } = useProductStore();
   const { totalCost } = usePriceStore();
   const { addItem } = useRecentlyViewed();
   const { wishitems } = useWishlist();
   const isInWishlist = wishitems.some((item) => item._id === data._id);
+
+  useEffect(() => {
+    if (basePriceForDatePicker > 0) {
+      const date = new Date();
+      date.setDate(date.getDate() + 7);
+      setDeliveryDate(date);
+      const { setDeliveryCostPerUnit } = usePriceStore.getState();
+      setDeliveryCostPerUnit(basePriceForDatePicker);
+    }
+  }, [basePriceForDatePicker]);
 
   useEffect(() => {
     setProduct(data.name);

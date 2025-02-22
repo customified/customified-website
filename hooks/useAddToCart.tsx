@@ -59,7 +59,7 @@ const processCanvas = async (
 };
 
 const addToCart = async (router: ReturnType<typeof useRouter>) => {
-  const { product, category, quantity, productSize, quantities, upgrades, image, productID, frontDesignUrl, backDesignUrl, orderNote } = useProductStore.getState();
+  const { product, category, quantity, productSize, quantities, upgrades, image, productID, frontDesignUrl, backDesignUrl, orderNote, deliveryDate } = useProductStore.getState();
   const { unitCost, totalCost, totalCostWithoutDelivery, totalDeliveryCost } = usePriceStore.getState();
   const { color, font, text, textColor } = useSvgStore.getState();
 
@@ -103,6 +103,7 @@ const addToCart = async (router: ReturnType<typeof useRouter>) => {
     totalDeliveryCost,
     totalCost,
     orderNote,
+    deliveryDate,
     design: {
       front: frontDesign,
       back: backDesign
