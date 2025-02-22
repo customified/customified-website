@@ -6,7 +6,7 @@ import { DeliveryCost, Customization } from '@/types';
 
 export const usePriceUpdater = (items: Customization[], deliveryCosts: DeliveryCost) => {
   const { quantities, productSize, upgrades, isUpgrade ,quantity} = useProductStore();
-  const { setUnitCost, setDeliveryCostPerUnit ,setTotalDeliveryCost} = usePriceStore();
+  const { setUnitCost, setDeliveryCostPerUnit ,setTotalDeliveryCost, setBasePriceForDatePicker} = usePriceStore();
 
   const updatePrice = () => {
     const totalQuantity = quantity
@@ -61,7 +61,7 @@ export const usePriceUpdater = (items: Customization[], deliveryCosts: DeliveryC
 
     // Set total unit cost
     setUnitCost(baseUnitCost + upgradeCost);
-    setDeliveryCostPerUnit(deliveryCostPerUnit);
+    setBasePriceForDatePicker(deliveryCostPerUnit);
   };
 
   return { updatePrice };

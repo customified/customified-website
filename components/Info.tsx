@@ -39,7 +39,19 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     date.setDate(date.getDate() + 7);
     return date;
   });
-  const { deliveryCostPerUnit } = usePriceStore();
+
+  const { basePriceForDatePicker } = usePriceStore();
+
+  useEffect(() => {
+    if (basePriceForDatePicker > 0) {
+      const date = new Date();
+      date.setDate(date.getDate() + 7);
+      setDeliveryDate(date);
+      const { setDeliveryCostPerUnit } = usePriceStore.getState();
+      setDeliveryCostPerUnit(basePriceForDatePicker);
+    }
+  }, [basePriceForDatePicker]);
+
   const { setSelectedImage } = useSvgStore();
   const router = useRouter();
   const {
@@ -258,51 +270,53 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
           </div>
         )}
 
-        <div className="flex flex-col items-center gap-4">
-          <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
-            STEP 11: Select Delivery Date
-          </h3>
-          <div className="w-full px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[...Array(6)].map((_, index) => {
-                const date = new Date();
-                date.setDate(date.getDate() + 7 + index);
-                const isSelected = deliveryDate && date.toDateString() === deliveryDate.toDateString();
-                
-                let dt;
-                if (index === 5) {
-                  dt = 0; // Free delivery
-                } else {
-                  dt = deliveryCostPerUnit - deliveryCostPerUnit * index * 0.1;
-                }
-                
-                const priceDisplay = index === 5 ? 'FREE' : `+$${dt.toFixed(2)}/pc`;
-                
-                return (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setDeliveryDate(date);
-                      const { setDeliveryCostPerUnit } = usePriceStore.getState();
-                      setDeliveryCostPerUnit(dt);
-                    }}
-                    className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 min-w-[200px] transition-all ${isSelected ? 'border-[#097392] bg-[#0972921f] scale-[1.02]' : 'border-gray-200 hover:border-[#097392]'}`}
-                  >
-                    <span className="text-4xl font-bold text-[#1a365d]">
-                      {date.getDate()}
-                    </span>
-                    <span className="text-lg text-gray-600">
-                      {date.toLocaleString('default', { month: 'long' })}, {date.getFullYear()}
-                    </span>
-                    <span className="text-lg text-[#097392] mt-2">
-                      {priceDisplay}
-                    </span>
-                  </button>
-                );
-              })}
+        {basePriceForDatePicker > 0 && (
+          <div className="flex flex-col items-center gap-4">
+            <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
+              Select Delivery Date
+            </h3>
+            <div className="w-full px-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[...Array(6)].map((_, index) => {
+                  const date = new Date();
+                  date.setDate(date.getDate() + 7 + index);
+                  const isSelected = deliveryDate && date.toDateString() === deliveryDate.toDateString();
+                  
+                  let dt;
+                  if (index === 5) {
+                    dt = 0; // Free delivery
+                  } else {
+                    dt = basePriceForDatePicker - basePriceForDatePicker * index * 0.1;
+                  }
+                  
+                  const priceDisplay = index === 5 ? 'FREE' : `+$${dt.toFixed(2)}/pc`;
+                  
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setDeliveryDate(date);
+                        const { setDeliveryCostPerUnit } = usePriceStore.getState();
+                        setDeliveryCostPerUnit(dt);
+                      }}
+                      className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 min-w-[200px] transition-all ${isSelected ? 'border-[#097392] bg-[#0972921f] scale-[1.02]' : 'border-gray-200 hover:border-[#097392]'}`}
+                    >
+                      <span className="text-4xl font-bold text-[#1a365d]">
+                        {date.getDate()}
+                      </span>
+                      <span className="text-lg text-gray-600">
+                        {date.toLocaleString('default', { month: 'long' })}, {date.getFullYear()}
+                      </span>
+                      <span className="text-lg text-[#097392] mt-2">
+                        {priceDisplay}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className="flex flex-col items-center gap-4">
           <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
