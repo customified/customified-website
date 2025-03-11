@@ -42,8 +42,13 @@ const CartItem: React.FC<CartItemProps> = ({data}) => {
                 </div>
 
                 <div className="mt-1 flex text-sm">
-                    <p className='text-gray-500'>{data.productSize}</p>
-                    <div className='text-gray-500 ml-4 border-l border-gray-200 pl-4  '>
+                    <p className="text-gray-500">{data.productSize}</p>
+                    {data.category === 'Lanyards' && data.lanyardLength && (
+                      <p className="text-gray-500 ml-4 border-l border-gray-200 pl-4">
+                        Length: {data.lanyardLength}
+                      </p>
+                    )}
+                    <div className='text-gray-500 ml-4 border-l border-gray-200 pl-4'>
                     <ul>
                     {Object.keys(data.quantities).length === 0 ?
                     <p>{data.quantity}</p>

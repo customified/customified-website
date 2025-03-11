@@ -59,7 +59,7 @@ const processCanvas = async (
 };
 
 const addToCart = async (router: ReturnType<typeof useRouter>) => {
-  const { product, category, quantity, productSize, quantities, upgrades, image, productID, frontDesignUrl, backDesignUrl, orderNote, deliveryDate } = useProductStore.getState();
+  const { product, category, quantity, productSize, lanyardLength, quantities, upgrades, image, productID, frontDesignUrl, backDesignUrl, orderNote, deliveryDate } = useProductStore.getState();
   const { unitCost, totalCost, totalCostWithoutDelivery, totalDeliveryCost } = usePriceStore.getState();
   const { color, font, text, textColor } = useSvgStore.getState();
 
@@ -67,6 +67,11 @@ const addToCart = async (router: ReturnType<typeof useRouter>) => {
 
   if (quantity === 0) {
     alert("Please enter Quantity");
+    return;
+  }
+
+  if (category === 'Lanyards' && !lanyardLength) {
+    alert("Please select a lanyard length");
     return;
   }
 
@@ -96,6 +101,7 @@ const addToCart = async (router: ReturnType<typeof useRouter>) => {
     category,
     quantity,
     productSize,
+    lanyardLength,
     quantities,
     upgrades,
     unitCost,

@@ -16,6 +16,8 @@ interface productState {
     setQuantity: (value: number) => void;
     productSize: string | undefined;
     setProductSize: (value: string | undefined) => void;
+    lanyardLength: string | undefined;
+    setLanyardLength: (value: string | undefined) => void;
     quantities: { [key: string]: number };
     setQuantities: (quantities: { [key: string]: number }) => void;
     isUpgrade: { [key: string]: boolean }
@@ -51,6 +53,8 @@ export const useProductStore = create<productState>((set) => ({
     setQuantity: (value) => set({ quantity: value }),
     productSize: undefined,
     setProductSize: (value) => set({ productSize: value }),
+    lanyardLength: undefined,
+    setLanyardLength: (value) => set({ lanyardLength: value }),
     quantities: {},
     setQuantities: (quantities) => set({ quantities }),
     isUpgrade: {},
