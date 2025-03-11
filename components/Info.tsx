@@ -22,6 +22,7 @@ import { useWishlist } from "@/hooks/useWishList";
 import { toggleWishlist } from "@/hooks/useAddToWishList";
 import dynamic from "next/dynamic";
 import Quantity from "./ui/Quantity";
+import { Label } from "@/components/ui/shadcn/label";
 
 interface Infoprops {
   data: Product;
@@ -251,12 +252,27 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
         return (
           <div
             className="flex flex-col items-center gap-4"
-            
+            key={customization.id}
           >
             <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
               STEP 4: Customize Your Message
             </h3>
             <CustomFont data={data} key={customization.id} />
+            
+            {/* Order Note */}
+            <div className="w-full px-4 mt-4">
+              <Label htmlFor="orderNote" className="text-md font-semibold block mb-2">Order Note</Label>
+              <textarea
+                id="orderNote"
+                value={noteText}
+                onChange={(e) => {
+                  setNoteText(e.target.value);
+                  setOrderNote(e.target.value);
+                }}
+                placeholder="Add any special instructions or notes for your order..."
+                className="w-full p-3 border rounded-md min-h-[100px] focus:outline-none focus:ring-2 focus:ring-teal-500"
+              />
+            </div>
           </div>
         );
       case CustomizationType.Quantity:
@@ -398,23 +414,6 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
             </div>
           </div>
         )}
-
-        <div className="flex flex-col items-center gap-4">
-          <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
-            Order Note
-          </h3>
-          <div className="w-full px-4">
-            <textarea
-              value={noteText}
-              onChange={(e) => {
-                setNoteText(e.target.value);
-                setOrderNote(e.target.value);
-              }}
-              placeholder="Add any special instructions or notes for your order..."
-              className="w-full p-3 border rounded-md min-h-[100px] focus:outline-none focus:ring-2 focus:ring-teal-500"
-            />
-          </div>
-        </div>
       </div>
 
       <hr className="border-gray-200" />
