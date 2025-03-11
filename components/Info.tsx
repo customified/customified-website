@@ -34,6 +34,7 @@ const CustomFont = dynamic(() => import("@/components/ui/CustomFont"), {
 
 const Info: React.FC<Infoprops> = ({ data, items }) => {
   const [noteText, setNoteText] = useState("");
+  const [selectedLanyardLength, setSelectedLanyardLength] = useState<string | undefined>(undefined);
 
   const { basePriceForDatePicker } = usePriceStore();
 
@@ -54,6 +55,7 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     setOrderNote,
     deliveryDate,
     setDeliveryDate,
+    setLanyardLength,
   } = useProductStore();
   const { totalCost } = usePriceStore();
   const { addItem } = useRecentlyViewed();
@@ -84,6 +86,10 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     setAdditional(data.additionalCategories ? data.additionalCategories : []);
     addItem(data);
     setOrderNote(data.orderNote);
+    
+    // Reset lanyard length when product changes
+    setSelectedLanyardLength(undefined);
+    setLanyardLength(undefined);
   }, [
     data,
     setProduct,
@@ -94,7 +100,14 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
     setAdditional,
     addItem,
     setOrderNote,
+    setLanyardLength,
   ]);
+
+  // Handle lanyard length selection
+  const handleLanyardLengthSelect = (length: string) => {
+    setSelectedLanyardLength(length);
+    setLanyardLength(length);
+  };
 
   const renderCustomization = (customization: Customization) => {
     switch (customization.type) {
@@ -108,42 +121,113 @@ const Info: React.FC<Infoprops> = ({ data, items }) => {
               <h3 className="font-semibold text-white text-lg w-full bg-teal-600 rounded-md px-6 py-2">
                 STEP 2: Choose Size
               </h3>
-              <div className="grid md:grid-cols-3 grid-cols-2 gap-4 w-full px-4">
-                {customization.options?.map((option) => (
-                  <button
-                    key={option.id}
-                    className={`flex flex-col items-center justify-center border-2 rounded-lg p-4 transition-transform transform 
-                      ${
-                        option.name === productSize
-                          ? "border-teal-600 bg-teal-100 shadow-lg scale-105"
-                          : "border-gray-300 hover:border-teal-500"
-                      }`}
-                    onClick={() => {
-                      setSelectedImage(true);
-                      setProductSize(option.name);
-                    }}
-                  >
-                    {option.mediaUrl && (
-                      <Image
-                        loading="lazy"
-                        width={56}
-                        height={56}
-                        src={option?.mediaUrl ? option.mediaUrl : ""}
-                        alt={option.name}
-                        className="h-14 w-14 object-contain mb-2"
-                      />
-                    )}
-                    <span className="font-medium text-gray-800">
-                      {option.name}
-                    </span>
-                    {option.value && (
-                      <span className="text-sm text-gray-500">
-                        {option.value}
+               
+              {/* Width options */}
+              <div className="w-full px-4">
+                {data.category.name === 'Lanyards' && (
+                  <h4 className="font-medium text-gray-700 mb-3">Select Width</h4>
+                )}
+                <div className="grid md:grid-cols-3 grid-cols-2 gap-4 w-full">
+                  {customization.options?.map((option) => (
+                    <button
+                      key={option.id}
+                      className={`flex flex-col items-center justify-center border-2 rounded-lg p-4 transition-transform transform 
+                        ${
+                          option.name === productSize
+                            ? "border-teal-600 bg-teal-100 shadow-lg scale-105"
+                            : "border-gray-300 hover:border-teal-500"
+                        }`}
+                      onClick={() => {
+                        setSelectedImage(true);
+                        setProductSize(option.name);
+                      }}
+                    >
+                      {option.mediaUrl && (
+                        <Image
+                          loading="lazy"
+                          width={56}
+                          height={56}
+                          src={option?.mediaUrl ? option.mediaUrl : ""}
+                          alt={option.name}
+                          className="h-14 w-14 object-contain mb-2"
+                        />
+                      )}
+                      <span className="font-medium text-gray-800">
+                        {option.name}
                       </span>
-                    )}
-                  </button>
-                ))}
+                      {option.value && (
+                        <span className="text-sm text-gray-500">
+                          {option.value}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
               </div>
+              
+              {/* Length options for Lanyards */}
+              {data.category.name === 'Lanyards' && (
+                <div className="w-full px-4 mt-4">
+                  <h4 className="font-medium text-gray-700 mb-3">Select Length</h4>
+                  <div className="flex flex-wrap gap-4 w-full">
+                    {/* Small - 30 inch */}
+                    <button
+                      className={`flex flex-col items-center justify-center border-2 rounded-lg p-4 min-w-[150px] transition-transform transform 
+                        ${
+                          selectedLanyardLength === "Small (30 inch)"
+                            ? "border-teal-600 bg-teal-100 shadow-lg scale-105"
+                            : "border-gray-300 hover:border-teal-500"
+                        }`}
+                      onClick={() => handleLanyardLengthSelect("Small (30 inch)")}
+                    >
+                      <span className="font-medium text-gray-800 text-lg">Small</span>
+                      <span className="text-sm text-gray-500">30 inch</span>
+                    </button>
+
+                    {/* Standard - 36 inch */}
+                    <button
+                      className={`flex flex-col items-center justify-center border-2 rounded-lg p-4 min-w-[150px] transition-transform transform 
+                        ${
+                          selectedLanyardLength === "Standard (36 inch)"
+                            ? "border-teal-600 bg-teal-100 shadow-lg scale-105"
+                            : "border-gray-300 hover:border-teal-500"
+                        }`}
+                      onClick={() => handleLanyardLengthSelect("Standard (36 inch)")}
+                    >
+                      <span className="font-medium text-gray-800 text-lg">Standard</span>
+                      <span className="text-sm text-gray-500">36 inch</span>
+                    </button>
+
+                    {/* Large - 42 inch */}
+                    <button
+                      className={`flex flex-col items-center justify-center border-2 rounded-lg p-4 min-w-[150px] transition-transform transform 
+                        ${
+                          selectedLanyardLength === "Large (42 inch)"
+                            ? "border-teal-600 bg-teal-100 shadow-lg scale-105"
+                            : "border-gray-300 hover:border-teal-500"
+                        }`}
+                      onClick={() => handleLanyardLengthSelect("Large (42 inch)")}
+                    >
+                      <span className="font-medium text-gray-800 text-lg">Large</span>
+                      <span className="text-sm text-gray-500">42 inch</span>
+                    </button>
+
+                    {/* Extra Large - 48 inch */}
+                    <button
+                      className={`flex flex-col items-center justify-center border-2 rounded-lg p-4 min-w-[150px] transition-transform transform 
+                        ${
+                          selectedLanyardLength === "Extra Large (48 inch)"
+                            ? "border-teal-600 bg-teal-100 shadow-lg scale-105"
+                            : "border-gray-300 hover:border-teal-500"
+                        }`}
+                      onClick={() => handleLanyardLengthSelect("Extra Large (48 inch)")}
+                    >
+                      <span className="font-medium text-gray-800 text-lg">Extra Large</span>
+                      <span className="text-sm text-gray-500">48 inch</span>
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         );

@@ -95,6 +95,7 @@ export interface Cart {
     category: string | null;
     quantity: number;
     productSize: string | undefined;
+    lanyardLength: string | undefined;
     quantities: { [key: string]: number };
     upgrades: { [key: string]: Upgrade };
     unitCost: number | string;
