@@ -1,4 +1,4 @@
-import { ChevronsRight, Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+import { ChevronsRight, Facebook, Instagram, Linkedin, Twitter, Phone, Clock } from "lucide-react"
 import Container from "./ui/Container"
 import Link from "next/link"
 
@@ -13,6 +13,21 @@ const Footer = () => {
             <p className="text-sm">
               Your trusted partner for quality products. We are committed to providing the best services 24/7.
             </p>
+            <div className="text-sm space-y-2">
+              <div>
+                <p>633 W 5th St</p>
+                <p>Suite 2510</p>
+                <p>Los Angeles, CA 90071</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                <a href="tel:1-877-395-4985" className="hover:text-white transition-colors">1-877-395-4985</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4" />
+                <p>Monday to Sunday: 7 am to 11 pm PST</p>
+              </div>
+            </div>
             {/* <div className="flex space-x-4 mt-2">
               <Link href="https://facebook.com" target="_blank" aria-label="Facebook">
                 <Facebook className="w-6 h-6 hover:text-teal-400 transition-colors" />
