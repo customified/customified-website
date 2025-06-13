@@ -74,24 +74,26 @@ const NavbarActions: React.FC<NavBarAcitonProps> = ({ category, products }) => {
             {wish.wishitems.length}
           </span>
         </button>
-        <button
-          className="flex flex-col items-center  md:px-4 px-2 py-2"
-          onClick={() => router.push("/rating")}
-        >
-          <div className="flex items-center">
-            <Star size={15} color="#f59e0b" fill="#f59e0b" />
-            <Star size={15} color="#f59e0b" fill="#f59e0b" />
-            <Star size={15} color="#f59e0b" fill="#f59e0b" />
-            <Star size={15} color="#f59e0b" fill="#f59e0b" />
-            <Star size={15} color="#f59e0b" fill="#f59e0b" />
-          </div>
-          <div className="flex gap-2 items-center">
-            <span className="md:ml-2 ml-1 text-[#f59e0b] font-bold">2,123</span>
-            <span className="text-[#f59e0b] text-sm font-bold hidden md:block">
-              Reviews
-            </span>
-          </div>
-        </button>
+        {/*
+          <button
+            className="flex flex-col items-center  md:px-4 px-2 py-2"
+            onClick={() => router.push("/rating")}
+          >
+            <div className="flex items-center">
+              <Star size={15} color="#f59e0b" fill="#f59e0b" />
+              <Star size={15} color="#f59e0b" fill="#f59e0b" />
+              <Star size={15} color="#f59e0b" fill="#f59e0b" />
+              <Star size={15} color="#f59e0b" fill="#f59e0b" />
+              <Star size={15} color="#f59e0b" fill="#f59e0b" />
+            </div>
+            <div className="flex gap-2 items-center">
+              <span className="md:ml-2 ml-1 text-[#f59e0b] font-bold">2,123</span>
+              <span className="text-[#f59e0b] text-sm font-bold hidden md:block">
+                Reviews
+              </span>
+            </div>
+          </button>
+        */}
       </div>
     </div>
   );
