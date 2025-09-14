@@ -29,11 +29,11 @@ const CartItem: React.FC<CartItemProps> = ({data}) => {
             alt=""
             className='object-cover object-center'
             />
+            <div className="absolute z-10 right-0 top-0">
+                <IconButton onClick={removeItem} icon={<X size={15} />} className="bg-transparent border-transparent hover:bg-white hover:border-gray-300"/>
+            </div>
         </div>
         <div className="relative ml-4 flex flex-1 flex-col justify-between sm:m1-6">
-            <div className="absolute z-10 right-0 top-0">
-                <IconButton onClick={removeItem} icon={<X size={15} />}/>
-            </div>
             <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
                 <div className="flex justify-between">
                     <p className='text-base md:text-lg font-semibold text-black'>
