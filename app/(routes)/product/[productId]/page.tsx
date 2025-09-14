@@ -55,9 +55,9 @@ const ProductPage: React.FC<ProductPageProps> = async ({
                         <Image
                             src="/offerQuantityBanner.webp"
                             alt="Offer Quantity Banner"
-                            width={800}
+                            width={1920}
                             height={200}
-                            className="max-w-full h-auto"
+                            className="w-full h-auto"
                         />
                     </div>
                 )}
