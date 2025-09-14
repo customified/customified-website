@@ -13,6 +13,7 @@ import { toggleWishlist } from "@/hooks/useAddToWishList";
 import { useWishlist } from "@/hooks/useWishList";
 import Currency from "../ui/Currency";
 import { usePriceStore } from "@/hooks/usePriceStore";
+import { useProductStore } from "@/hooks/useProductStore";
 import addToCart from "@/hooks/useAddToCart";
 import { useRouter } from 'next/navigation';
 
@@ -49,6 +50,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
   const router = useRouter();
   const { selectedImage } = useSvgStore();
   const { totalCost } = usePriceStore();
+  const { quantity } = useProductStore();
   const { wishitems } = useWishlist();
   const [showInfo, setShowInfo] = useState(false);
   const [currentPrice, setCurrentPrice] = useState(totalCost);
@@ -142,6 +144,16 @@ const Gallery: React.FC<GalleryProps> = ({ images, data }) => {
                 >
                   <Info className={`w-5 h-5 ${showInfo ? 'text-teal-600' : 'text-gray-500'}`} />
                 </Button>
+
+                {/* Giveaway message for Wristbands with quantity > 100 */}
+                {data.category.name === "Wristbands" && quantity > 99 && (
+                  <div className="flex items-start mt-1">
+                    <div className="bg-green-100 text-green-800 px-3 py-1 rounded-md border border-green-200">
+                      <span className="text-sm font-medium">+100 FREE</span>
+                    </div>
+                  </div>
+                )}
+
               </div>
               <Button
                 variant="default"
