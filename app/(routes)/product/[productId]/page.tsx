@@ -15,6 +15,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/shadcn/breadcrumb"
 import { HomeIcon } from "lucide-react"
+import Image from "next/image"
 
 
 interface ProductPageProps {
@@ -51,9 +52,11 @@ const ProductPage: React.FC<ProductPageProps> = async ({
             <Container >
                 {product.category.name === "Wristbands" && (
                     <div className="mb-6 flex justify-center">
-                        <img
+                        <Image
                             src="/offerQuantityBanner.webp"
                             alt="Offer Quantity Banner"
+                            width={800}
+                            height={200}
                             className="max-w-full h-auto"
                         />
                     </div>

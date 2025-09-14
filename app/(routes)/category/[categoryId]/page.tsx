@@ -8,6 +8,7 @@ import Categories from "@/components/homepageui/Categories";
 import Container from "@/components/ui/Container";
 import ProductCard from "@/components/ui/ProductCard";
 import { Product } from "@/types";
+import Image from "next/image";
 
 interface CategoryPageProps {
     params: {
@@ -65,9 +66,11 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
             <Container>
                 {category.name === "Wristbands" && (
                     <div className="mb-6 flex justify-center">
-                        <img
+                        <Image
                             src="/offerQuantityBanner.webp"
                             alt="Offer Quantity Banner"
+                            width={800}
+                            height={200}
                             className="max-w-full h-auto"
                         />
                     </div>
