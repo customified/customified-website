@@ -1,8 +1,6 @@
 import GetCategories from "@/actions/get-categories";
 import getCategory from "@/actions/get-category";
 import GetProducts from "@/actions/get-products";
-import { Billboard } from "@/components/Billboard";
-import CategoryList from "@/components/CategoryList";
 import FilteredProducts from "@/components/FilteredProducts";
 import Categories from "@/components/homepageui/Categories";
 import Container from "@/components/ui/Container";

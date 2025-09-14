@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Product, Customization, CustomizationType } from '@/types';
+import { Product, CustomizationType } from '@/types';
 
 interface PriceChartProps {
   product: Product;
