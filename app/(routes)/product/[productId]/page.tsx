@@ -48,6 +48,15 @@ const ProductPage: React.FC<ProductPageProps> = async ({
     return (
         <div className="bg-white ">
             <Container >
+                {product.category.name === "Wristbands" && (
+                    <div className="mb-6 flex justify-center">
+                        <img
+                            src="/offerQuantityBanner.webp"
+                            alt="Offer Quantity Banner"
+                            className="max-w-full h-auto"
+                        />
+                    </div>
+                )}
                 <div className="px-4 py-10 sm:px-6 lg:px-8 ">
                     <div className="lg:grid lg:grid-cols-[2fr_3fr] lg:items-start lg:gap-x-12 ">
                         <div className="gap-5 flex flex-col justify-center md:sticky md:top-10 md:left-0 bg-white">

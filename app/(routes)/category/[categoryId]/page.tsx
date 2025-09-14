@@ -63,6 +63,16 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
     return (
         <div className="bg-white pb-10 pt-5">
             <Container>
+                {category.name === "Wristbands" && (
+                    <div className="mb-6 flex justify-center">
+                        <img
+                            src="/offerQuantityBanner.webp"
+                            alt="Offer Quantity Banner"
+                            className="max-w-full h-auto"
+                        />
+                    </div>
+                )}
+
                 {/* <Billboard data={category.billboardId} /> */}
                 <FilteredProducts
                     groupedProducts={groupedProducts}
