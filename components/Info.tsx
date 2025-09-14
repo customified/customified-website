@@ -8,18 +8,13 @@ import { Customization, CustomizationType, Product } from "@/types";
 import { usePriceStore } from "@/hooks/usePriceStore";
 import { useProductStore } from "@/hooks/useProductStore";
 import { useSvgStore } from "@/hooks/useSvgStore";
-import addToCart from "@/hooks/useAddToCart";
-import DatePicker from "@/components/ui/DatePicker";
 
 import { useEffect, useState } from "react";
 import { Tab, TabGroup, TabList } from "@headlessui/react";
-import { HeartIcon, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import InfoSummary from "./ui/InfoSummary";
 import { useRecentlyViewed } from "@/hooks/useRecentView";
 import { useWishlist } from "@/hooks/useWishList";
-import { toggleWishlist } from "@/hooks/useAddToWishList";
 import dynamic from "next/dynamic";
 import Quantity from "./ui/Quantity";
 import { Label } from "@/components/ui/shadcn/label";
