@@ -5,6 +5,7 @@ import Info from "@/components/Info"
 import ProductList from "@/components/ProductList"
 import Gallery from "@/components/gallery"
 import Container from "@/components/ui/Container"
+import PriceChart from "@/components/ui/PriceChart"
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -88,6 +89,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
                         </div>
                     </div>
                     <hr className="my-10" />
+                    <PriceChart product={product} />
                     <ProductList title="Related Items" items={filteredProducts.slice(0, 4)} />
                 </div>
             </Container>
