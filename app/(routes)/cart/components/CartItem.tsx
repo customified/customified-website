@@ -59,8 +59,14 @@ const CartItem: React.FC<CartItemProps> = ({data}) => {
                 </ul>
                     </div>
                 </div>
-                <div className="flex mt-2">
+                <div className="flex items-center mt-2 gap-2">
                 <Currency data={data.totalCost}/>
+                {/* Giveaway message for Wristbands with quantity > 99 */}
+                {data.category === "Wristbands" && data.quantity > 99 && (
+                  <div className="bg-green-100 text-green-800 px-2 py-1 rounded-md border border-green-200">
+                    <span className="text-xs font-medium">+100 FREE</span>
+                  </div>
+                )}
                 </div>
             </div>
         </div>
