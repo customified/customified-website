@@ -36,6 +36,8 @@ export interface Product {
     storeId: string;
     slug: string;
     orderNote: string;
+    rating: number;
+    tags?: ProductTag[];
 }
 
 export interface AdditionalCategory {
@@ -83,6 +85,11 @@ export interface DeliveryCost {
     _id: string;
     category: string;
     priceTiers: { min: string, max: string, price: string }[];
+}
+
+export interface ProductTag {
+    icon_url: string;
+    value: string;
 }
 
 export interface Cart {
