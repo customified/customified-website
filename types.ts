@@ -9,6 +9,8 @@ export interface Category {
     name: string
     billboardId: Billboard
     image: string
+    product_description?: Array<{ key: string; value: string }>
+    faq?: Array<{ key: string; value: string }>
 }
 
 export interface Industry {
